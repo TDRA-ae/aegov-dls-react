@@ -64,7 +64,7 @@ const Checkbox = React.forwardRef((props, ref) => {
     required,
     name,
     value,
-    id,
+    id: providedId,
     label,
     description,
     size = 'base',
@@ -74,10 +74,14 @@ const Checkbox = React.forwardRef((props, ref) => {
     ...rest
   } = CheckboxSchema.parse(props);
 
+  // Generate a unique ID if none is provided
+  const id = React.useMemo(() => providedId || `checkbox-${Math.random().toString(36).slice(2)}`, [providedId]);
+
   return (
     <div className={twMerge('flex items-start gap-3', className)}>
       <Root
         ref={ref}
+        id={id}
         checked={checked}
         defaultChecked={defaultChecked}
         onCheckedChange={onCheckedChange}
@@ -85,7 +89,6 @@ const Checkbox = React.forwardRef((props, ref) => {
         required={required}
         name={name}
         value={value}
-        id={id}
         asChild={asChild}
         className={twMerge(
           'flex shrink-0 items-center justify-center rounded border-2 bg-whitely-50 transition-colors',
@@ -108,8 +111,8 @@ const Checkbox = React.forwardRef((props, ref) => {
             <label
               htmlFor={id}
               className={twMerge(
-                'text-aeblack-800 font-medium leading-none -mt-0.5',
-                disabled && 'text-aeblack-300',
+                'text-aeblack-800 font-medium leading-none -mt-0.5 cursor-pointer',
+                disabled && 'text-aeblack-300 cursor-not-allowed',
                 sizeStyles[size].label
               )}
             >
