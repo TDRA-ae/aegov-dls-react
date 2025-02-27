@@ -7,3 +7,4 @@ export { default as FileUpload } from './components/FileUpload/FileUpload';
 export { default as Tabs } from './components/Tabs/Tabs';
 export { Select, MultiSelect } from './components/Select';
 export { default as Navigation } from './components/Navigation/Navigation';
+export { default as Radio, RadioItem } from './components/Radio/Radio';
