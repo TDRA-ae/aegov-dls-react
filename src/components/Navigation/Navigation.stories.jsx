@@ -1,29 +1,67 @@
 import React from 'react';
 import Navigation from './Navigation';
-import { 
-  House, 
-  User, 
-  PersonArmsSpread as Accessibility, 
-  Globe, 
-  Gear, 
-  Buildings, 
-  Info, 
-  Phone, 
-  Envelope, 
-  MapPin, 
-  Calendar, 
-  FileText, 
-  Newspaper, 
-  UsersThree, 
-  Handshake, 
+import {
+  House,
+  User,
+  PersonArmsSpread as Accessibility,
+  Globe,
+  Gear,
+  Buildings,
+  Info,
+  Phone,
+  Envelope,
+  MapPin,
+  Calendar,
+  FileText,
+  Newspaper,
+  UsersThree,
+  Handshake,
   ChartLine
 } from '@phosphor-icons/react';
 
 const { MainMenu, SecondaryMenu, NavItem } = Navigation;
 
+import { useState, useEffect } from 'react';
+
+const useWindowSize = (mobileBreakpoint = 1024) => {
+  // Initialize with default values or actual window size if on client
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : mobileBreakpoint,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+  });
+
+  // Derived value for mobile detection
+  const isMobile = windowSize.width < mobileBreakpoint;
+
+  useEffect(() => {
+    // Handler to call on window resize
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Call handler right away to update initial state
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty dependency array means this effect runs once on mount
+
+  return { width: windowSize.width, height: windowSize.height, isMobile };
+};
+
+const Logo = () => (
+  <div className="text-aeblack-900 font-bold text-2xl">LOGO</div>
+);
+
 // Custom Link component for demonstration
 const CustomLink = React.forwardRef(({ children, onClick, className, ...props }, ref) => (
-  <a 
+  <a
     ref={ref}
     className={`inline-flex items-center gap-2 border-b-2 border-transparent px-3 py-4 font-bold transition-colors hover:border-primary-800 hover:text-primary-800 ${className || ''}`}
     onClick={(e) => {
@@ -72,17 +110,20 @@ export default {
 };
 
 // Basic navigation with simple items
-export const Default = () => (
-  <Navigation>
-    <MainMenu>
-      <NavItem icon={House} href="#" isActive>
+export const Default = () => {
+  const { isMobile } = useWindowSize();
+
+  return (
+    <Navigation isMobile={isMobile} logo={<Logo />}>
+      <MainMenu>
+        <NavItem icon={House} href="#" isActive>
         Home
       </NavItem>
       <NavItem href="#">
         Our services
       </NavItem>
-      <NavItem 
-        href="#" 
+      <NavItem
+        href="#"
         dropdown={[
           {
             title: 'Sub Title',
@@ -122,24 +163,28 @@ export const Default = () => (
       </NavItem>
       <NavItem type="secondary" icon={Globe} href="#" tooltipText="Switch language">
         Switch language
-      </NavItem>
-    </SecondaryMenu>
-  </Navigation>
-);
+        </NavItem>
+      </SecondaryMenu>
+    </Navigation>
+  );
+};
 
 // Navigation with icons for all items
-export const WithIcons = () => (
-  <Navigation>
-    <MainMenu>
-      <NavItem icon={House} href="#" isActive>
+export const WithIcons = () => {
+  const { isMobile } = useWindowSize();
+
+  return (
+    <Navigation isMobile={isMobile} logo={<Logo />}>
+      <MainMenu>
+        <NavItem icon={House} href="#" isActive>
         Home
       </NavItem>
       <NavItem icon={Gear} href="#">
         Services
       </NavItem>
-      <NavItem 
-        icon={Info} 
-        href="#" 
+      <NavItem
+        icon={Info}
+        href="#"
         dropdown={[
           {
             title: 'Company',
@@ -173,19 +218,23 @@ export const WithIcons = () => (
         Language
       </NavItem>
     </SecondaryMenu>
-  </Navigation>
-);
+    </Navigation>
+  );
+};
 
 // Complex navigation with multiple dropdown sections
-export const Complex = () => (
-  <Navigation>
-    <MainMenu>
-      <NavItem icon={House} href="#">
+export const Complex = () => {
+  const { isMobile } = useWindowSize();
+
+  return (
+    <Navigation isMobile={isMobile} logo={<Logo />}>
+      <MainMenu>
+        <NavItem icon={House} href="#">
         Home
       </NavItem>
-      <NavItem 
-        icon={Gear} 
-        href="#" 
+      <NavItem
+        icon={Gear}
+        href="#"
         dropdown={[
           {
             title: 'Business Services',
@@ -207,9 +256,9 @@ export const Complex = () => (
       >
         Services
       </NavItem>
-      <NavItem 
-        icon={Buildings} 
-        href="#" 
+      <NavItem
+        icon={Buildings}
+        href="#"
         isActive
         dropdown={[
           {
@@ -240,9 +289,9 @@ export const Complex = () => (
       >
         About
       </NavItem>
-      <NavItem 
-        icon={FileText} 
-        href="#" 
+      <NavItem
+        icon={FileText}
+        href="#"
         dropdown={[
           {
             title: 'Documentation',
@@ -278,84 +327,72 @@ export const Complex = () => (
       <NavItem type="secondary" icon={Globe} href="#" tooltipText="Language">
         Language
       </NavItem>
-    </SecondaryMenu>
-  </Navigation>
-);
+      </SecondaryMenu>
+    </Navigation>
+  );
+};
 
 // Mobile navigation example
-export const Mobile = () => (
-  <Navigation isMobile>
-    <MainMenu>
-      <NavItem icon={Info} href="#">
-        Home
-      </NavItem>
-      <NavItem href="#">
-        Our services
-      </NavItem>
-      <NavItem 
-        href="#" 
-        dropdown={[
-          {
-            title: 'Sub Title',
-            items: [
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-            ],
-          },
-          {
-            title: 'Sub Title',
-            items: [
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-            ],
-          },
-          {
-            title: 'Sub Title',
-            items: [
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-            ],
-          },
-        ]}
-      >
-        About us
-      </NavItem>
-    </MainMenu>
-    <SecondaryMenu>
-      <NavItem type="secondary" icon={User} href="#">
-        Login
-      </NavItem>
-      <NavItem type="secondary" icon={Accessibility} href="#">
-        Accessibility
-      </NavItem>
-      <NavItem type="secondary" icon={Globe} href="#">
-        Switch language
-      </NavItem>
-    </SecondaryMenu>
-  </Navigation>
-);
+export const Mobile = () => {
+  return (
+    <Navigation isMobile={true} logo={<Logo />}>
+      <MainMenu>
+        <NavItem icon={House} href="#">
+          Home
+        </NavItem>
+        <NavItem href="#">
+          Our services
+        </NavItem>
+        <NavItem
+          href="#"
+          dropdown={[
+            {
+              title: 'Sub Title',
+              items: [
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+              ],
+            },
+            {
+              title: 'Sub Title',
+              items: [
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+              ],
+            },
+            {
+              title: 'Sub Title',
+              items: [
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+              ],
+            },
+          ]}
+        >
+          About us
+        </NavItem>
+      </MainMenu>
+      <SecondaryMenu>
+        <NavItem type="secondary" icon={User} href="#">
+          Login
+        </NavItem>
+        <NavItem type="secondary" icon={Accessibility} href="#">
+          Accessibility
+        </NavItem>
+        <NavItem type="secondary" icon={Globe} href="#">
+          Switch language
+        </NavItem>
+      </SecondaryMenu>
+    </Navigation>
+  );
+};
 
 // Responsive navigation that shows both desktop and mobile versions
 export const Responsive = () => {
-  const [windowWidth, setWindowWidth] = React.useState(
-    typeof window !== 'undefined' ? window.innerWidth : 1024
-  );
-
-  React.useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  const isMobile = windowWidth < 1024;
+  const { width: windowWidth, isMobile } = useWindowSize();
 
   return (
     <div>
@@ -363,7 +400,7 @@ export const Responsive = () => {
         <p>Current width: {windowWidth}px ({isMobile ? 'Mobile' : 'Desktop'} view)</p>
         <p className="text-sm text-aeblack-600">Resize your browser window to see the navigation change</p>
       </div>
-      <Navigation isMobile={isMobile}>
+      <Navigation isMobile={isMobile} logo={<Logo />}>
         <MainMenu>
           <NavItem icon={House} href="#" isActive>
             Home
@@ -371,8 +408,8 @@ export const Responsive = () => {
           <NavItem href="#">
             Our services
           </NavItem>
-          <NavItem 
-            href="#" 
+          <NavItem
+            href="#"
             dropdown={[
               {
                 title: 'Sub Title',
@@ -421,13 +458,15 @@ export const Responsive = () => {
 
 // Example with custom components
 export const WithCustomComponents = () => {
+  const { isMobile } = useWindowSize();
+
   const handleCustomClick = (e) => {
     e.preventDefault();
     alert('Custom handler executed!');
   };
 
   return (
-    <Navigation>
+    <Navigation isMobile={isMobile} logo={<Logo />}>
       <MainMenu>
         <NavItem icon={House} href="#" isActive>
           Home

@@ -14,13 +14,13 @@ import {
 import { CaretDown, List as HamburgerMenu, X } from '@phosphor-icons/react';
 
 
-const dropdownSchema = z.object({
+const dropdownSchema = z.array(z.object({
     title: z.string(),
     items: z.array(z.object({
         label: z.string(),
         href: z.string()
-    }))
-});
+    })) 
+}));
 
 const NavItem = React.forwardRef(({
     children,
@@ -35,10 +35,17 @@ const NavItem = React.forwardRef(({
 }, ref) => {
     const [isOpen, setIsOpen] = React.useState(false);
     const hasDropdown = dropdown && (Array.isArray(dropdown) || React.isValidElement(dropdown));
-    const validatedDropdown = hasDropdown ? dropdownSchema.parse(dropdown) : null;
 
-    if (!validatedDropdown) {
-        console.error('Invalid dropdown schema', dropdown);
+    if (hasDropdown) {
+        // If dropdown is a React node, we can assume it's a custom dropdown
+        if (!React.isValidElement(dropdown)) {
+            // Validate the dropdown schema
+            const validatedDropdown = dropdownSchema.parse(dropdown);
+
+            if (!validatedDropdown) {
+                console.error('Invalid dropdown schema', dropdown);
+            }
+        }
     }
 
     // If asChild is true, we render the child directly
@@ -216,7 +223,7 @@ const MobileNavigation = ({ children, logo }) => {
     return (
         <div className="">
             <div className="py-2.5">
-                <div className="container">
+                <div className="">
                     <div className="flex items-center justify-between">
                         <div className="logos">
                             <div className="logo-item">
@@ -227,12 +234,12 @@ const MobileNavigation = ({ children, logo }) => {
                             </div>
                         </div>
                         <div className="header-top-right">
-                            <div className="flex items-center gap-3">
+                            <div className="flex items-center justify-between gap-3">
                                 <button
                                     onClick={() => setIsOpen(true)}
                                     className="hamburger-icon text-aeblack-700"
                                 >
-                                    <HamburgerMenu weight="bold" className="w-8 h-8" />
+                                    <HamburgerMenu weight="light" className="w-8 h-8" />
                                     <span className="sr-only">Toggle main menu</span>
                                 </button>
                             </div>
@@ -251,9 +258,9 @@ const MobileNavigation = ({ children, logo }) => {
                             </a>
                             <button
                                 onClick={() => setIsOpen(false)}
-                                className="text-black p-2"
+                                className="text-black"
                             >
-                                <X weight="bold" className="w-8 h-8" />
+                                <X weight="light" className="w-8 h-8" />
                                 <span className="sr-only">Close main menu</span>
                             </button>
                         </div>
