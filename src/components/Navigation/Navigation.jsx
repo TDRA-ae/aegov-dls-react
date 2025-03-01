@@ -21,6 +21,27 @@ const dropdownSchema = z.array(z.object({
     })) 
 }));
 
+const navItemSchema = z.object({
+    children: z.any(),
+    icon: z.any().optional(),
+    href: z.string().optional(),
+    isActive: z.boolean().optional(),
+    dropdown: z.union([dropdownSchema, z.any()]).optional(),
+    asChild: z.boolean().optional(),
+    type: z.enum(['primary', 'secondary']).optional(),
+    tooltipText: z.string().optional(),
+});
+
+const mainMenuSchema = z.object({
+    children: z.any(),
+    className: z.string().optional(),
+});
+
+const secondaryMenuSchema = z.object({
+    children: z.any(),
+    className: z.string().optional(),
+});
+
 const NavItem = React.forwardRef(({
     children,
     icon: Icon,
@@ -32,6 +53,22 @@ const NavItem = React.forwardRef(({
     tooltipText,
     ...props
 }, ref) => {
+    try {
+        navItemSchema.parse({
+            children,
+            icon: Icon,
+            href,
+            isActive,
+            dropdown,
+            asChild,
+            type,
+            tooltipText
+        });
+    } catch (error) {
+        console.error('NavItem validation error:', error);
+        return null;
+    }
+
     const hasDropdown = dropdown && (Array.isArray(dropdown) || React.isValidElement(dropdown));
 
     if (hasDropdown) {
@@ -152,6 +189,13 @@ NavItem.displayName = 'NavItem';
 
 // MainMenu Component
 const MainMenu = React.forwardRef(({ children, className, ...props }, ref) => {
+    try {
+        mainMenuSchema.parse({ children, className });
+    } catch (error) {
+        console.error('MainMenu validation error:', error);
+        return null;
+    }
+
     return (
         <Root className="relative z-[1]" ref={ref} {...props}>
             <List className={twMerge("flex items-center gap-1", className)}>
@@ -171,6 +215,13 @@ MainMenu.displayName = 'MainMenu';
 
 // SecondaryMenu Component
 const SecondaryMenu = React.forwardRef(({ children, className, ...props }, ref) => {
+    try {
+        secondaryMenuSchema.parse({ children, className });
+    } catch (error) {
+        console.error('SecondaryMenu validation error:', error);
+        return null;
+    }
+
     return (
         <div className={twMerge("header-navs-right", className)} ref={ref} {...props}>
             <ul className="flex items-center">
