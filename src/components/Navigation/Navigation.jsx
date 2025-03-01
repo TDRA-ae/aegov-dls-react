@@ -13,7 +13,6 @@ import {
 } from '@radix-ui/react-navigation-menu';
 import { CaretDown, List as HamburgerMenu, X } from '@phosphor-icons/react';
 
-
 const dropdownSchema = z.array(z.object({
     title: z.string(),
     items: z.array(z.object({
@@ -33,7 +32,6 @@ const NavItem = React.forwardRef(({
     tooltipText,
     ...props
 }, ref) => {
-    const [isOpen, setIsOpen] = React.useState(false);
     const hasDropdown = dropdown && (Array.isArray(dropdown) || React.isValidElement(dropdown));
 
     if (hasDropdown) {
@@ -78,66 +76,57 @@ const NavItem = React.forwardRef(({
     }
 
     // If it has a dropdown
-      if (hasDropdown) {
+    if (hasDropdown) {
         return (
-          <Item 
-            className="group relative"
-            onMouseEnter={() => setIsOpen(true)}
-            onMouseLeave={() => setIsOpen(false)}
-            ref={ref}
-            {...props}
-          >
-            <Trigger 
-              className={twMerge(
-                "group inline-flex items-center gap-2 border-b-2 border-transparent px-3 py-4 font-bold transition-colors hover:border-primary-800 hover:text-primary-800",
-                isActive && "border-primary-900 text-primary-900"
-              )}
-              onClick={() => setIsOpen(!isOpen)}
-              data-state={isOpen ? "open" : "closed"}
-            >
-              {Icon && <Icon weight="regular" className="h-5 w-5" />}
-              {children}
-              <CaretDown weight="bold" className="h-4 w-4 transition-transform group-data-[state=open]:rotate-180" />
-            </Trigger>
-            {isOpen && (
-              <Content 
-                className={
-                    `
-                        absolute left-0 top-full z-50 mt-1 w-auto rounded-lg border border-aeblack-100 bg-whitely-50 p-4 shadow-lg 
-                        data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight 
-                        data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight
-                    `
-                }
-                forceMount
-              >
-                {React.isValidElement(dropdown) ? (
-                  dropdown
-                ) : (
-                  <div className="flex flex-wrap">
-                    {dropdown.map((group, index) => (
-                      <div key={index} className="p-3 w-52">
-                        <h2 className="mb-4 text-primary-500 font-bold">{group.title}</h2>
-                        <ul className="space-y-2">
-                          {group.items.map((item, itemIndex) => (
-                            <li key={itemIndex} className="menu-item">
-                              <a 
-                                href={item.href || "#"} 
-                                className="inline-block px-3 py-2 text-aeblack-900 hover:text-primary-700 hover:underline transition-colors"
-                              >
-                                {item.label}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </Content>
-            )}
-          </Item>
+            <Item className="group relative z-[1]">
+                <Trigger 
+                    className={twMerge(
+                        "group inline-flex items-center gap-2 border-b-2 border-transparent px-3 py-4 font-bold transition-colors",
+                        "hover:border-primary-800 hover:text-primary-800",
+                        "[&[data-state=open]]:border-primary-800",
+                        isActive && "border-primary-900 text-primary-900"
+                    )}
+                >
+                    {Icon && <Icon weight="regular" className="h-5 w-5" />}
+                    {children}
+                    <CaretDown 
+                        weight="bold" 
+                        className="h-4 w-4 transition-transform [&[data-state=open]]:rotate-180" 
+                        aria-hidden 
+                    />
+                </Trigger>
+
+                <Content
+                className="mt-2 absolute z-50 w-[300px] data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight">
+                    <div className="rounded-lg border border-aeblack-100 bg-whitely-50 p-4 shadow-lg">
+                        {React.isValidElement(dropdown) ? (
+                            dropdown
+                        ) : (
+                            <div className="flex flex-col">
+                                {dropdown.map((group, index) => (
+                                    <div key={index} className="mb-6 last:mb-0">
+                                        <h2 className="mb-2 text-primary-500 font-bold">{group.title}</h2>
+                                        <ul className="space-y-1">
+                                            {group.items.map((item, itemIndex) => (
+                                                <li key={itemIndex}>
+                                                    <Link 
+                                                        href={item.href || "#"} 
+                                                        className="block px-2 py-1.5 text-aeblack-900 rounded hover:bg-aeblack-50 hover:text-primary-700 transition-colors"
+                                                    >
+                                                        {item.label}
+                                                    </Link>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+                </Content>
+            </Item>
         );
-      }
+    }
 
     // Regular nav item
     return (
@@ -164,15 +153,15 @@ NavItem.displayName = 'NavItem';
 // MainMenu Component
 const MainMenu = React.forwardRef(({ children, className, ...props }, ref) => {
     return (
-        <Root className="relative" ref={ref} {...props}>
+        <Root className="relative z-[1]" ref={ref} {...props}>
             <List className={twMerge("flex items-center gap-1", className)}>
                 {children}
                 <Indicator className="top-full z-[1] flex h-[10px] items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]">
                     <div className="relative top-[70%] h-[10px] w-[10px] rotate-[45deg] rounded-tl-[2px] bg-white" />
                 </Indicator>
             </List>
-            <div className="perspective-[2000px] absolute top-full left-0 flex w-full justify-center">
-                <Viewport className="relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-[6px] bg-white transition-[width,_height] duration-300 sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+            <div className="absolute top-full left-0 w-full">
+                {/* <Viewport className="relative mt-[10px] h-[var(--radix-navigation-menu-viewport-height)] w-[var(--radix-navigation-menu-viewport-width)] origin-[top_center] overflow-hidden rounded-[6px] bg-white transition-[width,_height] duration-300" /> */}
             </div>
         </Root>
     );

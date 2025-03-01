@@ -78,7 +78,7 @@ CustomLink.displayName = 'CustomLink';
 
 // Custom dropdown content component
 const CustomDropdown = () => (
-  <div className="p-4 bg-white rounded-lg shadow-lg">
+  <div className="">
     <h3 className="text-lg font-bold text-primary-700 mb-3">Custom Dropdown Content</h3>
     <div className="grid grid-cols-2 gap-4">
       <div>
