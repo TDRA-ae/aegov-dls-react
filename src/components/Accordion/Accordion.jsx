@@ -84,7 +84,7 @@ const Accordion = React.forwardRef((props, ref) => {
       ref={ref}
       type={multiple ? 'multiple' : 'single'}
       defaultValue={defaultValue}
-      collapsible={collapsible}
+      collapsible={collapsible.toString()}
       className={twMerge('accordion-wrapper w-full', className)}
       {...rest}
     >
