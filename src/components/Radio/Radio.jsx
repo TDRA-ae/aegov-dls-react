@@ -50,14 +50,14 @@ const sizeStyles = {
 
 const variantStyles = {
   primary: {
-    radio: 'border-primary-400 focus-visible:ring-primary-500',
+    radio: 'border-primary-400 focus-visible:ring-primary-500 before:bg-primary-50',
     indicator: 'bg-primary-600',
-    hover: 'hover:border-primary-500',
+    hover: 'hover:border-primary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100 rtl:before:translate-x-2/4',
   },
   secondary: {
-    radio: 'border-secondary-400 focus-visible:ring-secondary-500',
+    radio: 'border-secondary-400 focus-visible:ring-secondary-500 before:bg-secondary-50',
     indicator: 'bg-secondary-800',
-    hover: 'hover:border-secondary-500',
+    hover: 'hover:border-secondary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100 rtl:before:translate-x-2/4',
   },
 };
 
@@ -92,7 +92,7 @@ const RadioItem = React.forwardRef((props, ref) => {
         className={twMerge(
           'relative border-2 rounded-full bg-whitely-50 shrink-0',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-          'disabled:cursor-not-allowed disabled:opacity-50 disabled:border-primary-200',
+          'disabled:cursor-not-allowed disabled:opacity-50 disabled:border-primary-200 disabled:before:!hidden disabled:pointer-events-none',
           'transition-colors',
           sizeStyles[size]?.radio,
           variantStyles[variant]?.radio,
