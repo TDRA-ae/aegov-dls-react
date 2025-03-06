@@ -44,13 +44,13 @@ const sizeStyles = {
 
 const variantStyles = {
   primary: {
-    checkbox: 'border-primary-400 data-[state=checked]:bg-primary-600 data-[state=checked]:border-primary-600',
-    hover: 'hover:border-primary-500',
+    checkbox: 'border-primary-400 data-[state=checked]:bg-primary-600 data-[state=checked]:border-primary-600 before:bg-primary-50',
+    hover: 'hover:border-primary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100 rtl:before:translate-x-2/4',
     focus: 'focus-visible:ring-primary-500',
   },
   secondary: {
-    checkbox: 'border-secondary-400 data-[state=checked]:bg-secondary-800 data-[state=checked]:border-secondary-800',
-    hover: 'hover:border-secondary-500',
+    checkbox: 'border-secondary-400 data-[state=checked]:bg-secondary-800 data-[state=checked]:border-secondary-800 before:bg-secondary-50',
+    hover: 'hover:border-secondary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100 rtl:before:translate-x-2/4',
     focus: 'focus-visible:ring-secondary-500',
   },
 };
@@ -91,9 +91,9 @@ const Checkbox = React.forwardRef((props, ref) => {
         value={value}
         asChild={asChild}
         className={twMerge(
-          'flex shrink-0 items-center justify-center rounded border-2 bg-whitely-50 transition-colors',
+          'flex shrink-0 items-center justify-center rounded border-2 bg-whitely-50 transition-colors relative',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-          'disabled:cursor-not-allowed disabled:opacity-50',
+          'disabled:cursor-not-allowed disabled:opacity-50 disabled:before:!hidden disabled:pointer-events-none',
           sizeStyles[size].checkbox,
           variantStyles[variant].checkbox,
           variantStyles[variant].hover,
