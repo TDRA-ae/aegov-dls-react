@@ -96,6 +96,10 @@ const Select = forwardRef(({
     'z-50'
   );
 
+  const viewportClasses = cn(
+    'max-h-[300px] overflow-auto'
+  );
+
   const itemClasses = cn(
     'relative flex items-center px-4 py-2 text-gray-900',
     'data-[highlighted]:bg-primary-50 data-[highlighted]:text-primary-900',
@@ -142,7 +146,7 @@ const Select = forwardRef(({
             <ScrollUpButton className={scrollButtonClasses}>
               <CaretUp className="h-4 w-4" />
             </ScrollUpButton>
-            <Viewport className="p-0">
+            <Viewport className={viewportClasses}>
               {options.map((option) => (
                 <Item
                   key={option.value}
