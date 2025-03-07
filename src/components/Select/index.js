@@ -1,5 +1,4 @@
 import Select from './Select';
-import MultiSelect from './MultiSelect';
 
-export { Select, MultiSelect };
+export { Select };
 export default Select; 

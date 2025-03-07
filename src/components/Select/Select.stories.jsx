@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select, MultiSelect } from './index';
+import { Select } from './index';
 
 export default {
   title: 'Components/Select',
@@ -152,64 +152,4 @@ export const Controlled = () => {
       </div>
     </div>
   );
-};
-
-// Multi Select
-export const Multi = () => {
-  const [selectedValues, setSelectedValues] = useState([]);
-  
-  return (
-    <div className="flex flex-col space-y-4">
-      <MultiSelect
-        label="Multi Select"
-        placeholder="Choose countries"
-        id="multi"
-        options={countryOptions}
-        value={selectedValues}
-        onChange={setSelectedValues}
-      />
-      <div className="text-sm">
-        Selected values: <span className="font-bold">{selectedValues.length ? selectedValues.join(', ') : 'none'}</span>
-      </div>
-    </div>
-  );
-};
-
-// Multi Select with Error
-export const MultiWithError = {
-  args: {
-    label: 'Countries',
-    placeholder: 'Choose countries',
-    error: 'Please select at least one country',
-    id: 'multi-error',
-    options: countryOptions,
-  },
-  render: (args) => <MultiSelect {...args} />,
-};
-
-// Multi Select Sizes
-export const MultiSizes = () => (
-  <div className="flex flex-col space-y-4">
-    <MultiSelect
-      size="sm"
-      label="Small Multi Select"
-      placeholder="Small size"
-      id="multi-small"
-      options={countryOptions}
-    />
-    <MultiSelect
-      size="base"
-      label="Base Multi Select"
-      placeholder="Base size"
-      id="multi-base"
-      options={countryOptions}
-    />
-    <MultiSelect
-      size="lg"
-      label="Large Multi Select"
-      placeholder="Large size"
-      id="multi-large"
-      options={countryOptions}
-    />
-  </div>
-); 
+}; 

@@ -21,7 +21,6 @@ const selectSchema = z.object({
   placeholder: z.string().optional(),
   disabled: z.boolean().optional(),
   required: z.boolean().optional(),
-  multiple: z.boolean().optional(),
   size: z.enum(['sm', 'base', 'lg']).optional(),
   variant: z.enum(['primary', 'secondary']).optional(),
   id: z.string().optional(),
@@ -37,7 +36,6 @@ const Select = forwardRef(({
   placeholder = 'Select an option',
   disabled,
   required,
-  multiple,
   size = 'base',
   variant = 'primary',
   id,
@@ -56,7 +54,6 @@ const Select = forwardRef(({
       placeholder,
       disabled,
       required,
-      multiple,
       size,
       variant,
       id,
@@ -145,7 +142,7 @@ const Select = forwardRef(({
             <ScrollUpButton className={scrollButtonClasses}>
               <CaretUp className="h-4 w-4" />
             </ScrollUpButton>
-            <Viewport className={multiple ? 'p-1' : 'p-0'}>
+            <Viewport className="p-0">
               {options.map((option) => (
                 <Item
                   key={option.value}
