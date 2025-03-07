@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Toast } from './Toast';
+import * as RadixToast from '@radix-ui/react-toast';
 
 export default {
   title: 'Components/Toast',
@@ -9,21 +10,13 @@ export default {
     layout: 'centered',
   },
   argTypes: {
-    title: { 
-      control: 'text',
-      description: 'The title of the toast message'
-    },
-    description: { 
-      control: 'text',
-      description: 'Optional description text for the toast'
-    },
     duration: { 
       control: 'number',
       description: 'Duration in milliseconds before the toast disappears'
     },
-    action: {
-      control: 'object',
-      description: 'Optional action button configuration'
+    children: {
+      control: 'text',
+      description: 'The content of the toast'
     }
   }
 };
@@ -53,42 +46,69 @@ const Template = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {
-  title: 'Toast Title',
-  description: 'This is a simple toast message.',
+  children: (
+    <RadixToast.Title className="text-gray-900 font-semibold text-sm">
+      Simple toast message
+    </RadixToast.Title>
+  ),
+  duration: 5000
+};
+
+export const WithDescription = Template.bind({});
+WithDescription.args = {
+  children: (
+    <>
+      <RadixToast.Title className="text-gray-900 font-semibold text-sm mb-1">
+        File Deleted
+      </RadixToast.Title>
+      <RadixToast.Description className="text-gray-600 text-sm">
+        The file has been moved to trash.
+      </RadixToast.Description>
+    </>
+  ),
   duration: 5000
 };
 
 export const WithAction = Template.bind({});
 WithAction.args = {
-  title: 'File Deleted',
-  description: 'The file has been moved to trash.',
-  action: {
-    label: 'Undo',
-    onClick: () => console.log('Undo clicked'),
-  },
+  children: (
+    <>
+      <RadixToast.Title className="text-gray-900 font-semibold text-sm mb-1">
+        Changes saved
+      </RadixToast.Title>
+      <RadixToast.Description className="text-gray-600 text-sm mb-3">
+        Your changes have been saved successfully.
+      </RadixToast.Description>
+      <RadixToast.Action
+        altText="Undo"
+        className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
+        onClick={() => console.log('Undo clicked')}
+      >
+        Undo
+      </RadixToast.Action>
+    </>
+  ),
   duration: 5000
-};
-
-export const TitleOnly = Template.bind({});
-TitleOnly.args = {
-  title: 'Changes saved successfully',
-  duration: 3000
-};
-
-export const Success = Template.bind({});
-Success.args = {
-  title: 'Success!',
-  description: 'Your changes have been saved successfully.',
-  duration: 4000
 };
 
 export const Error = Template.bind({});
 Error.args = {
-  title: 'Error',
-  description: 'Something went wrong. Please try again.',
-  action: {
-    label: 'Retry',
-    onClick: () => console.log('Retry clicked'),
-  },
+  children: (
+    <>
+      <RadixToast.Title className="text-gray-900 font-semibold text-sm mb-1">
+        Error
+      </RadixToast.Title>
+      <RadixToast.Description className="text-gray-600 text-sm mb-3">
+        Something went wrong. Please try again.
+      </RadixToast.Description>
+      <RadixToast.Action
+        altText="Retry"
+        className="inline-flex items-center justify-center px-4 py-2 text-sm font-medium text-white bg-primary-600 rounded-lg hover:bg-primary-700 transition-colors"
+        onClick={() => console.log('Retry clicked')}
+      >
+        Retry
+      </RadixToast.Action>
+    </>
+  ),
   duration: 6000
 }; 
