@@ -152,4 +152,44 @@ export const Controlled = () => {
       </div>
     </div>
   );
+};
+
+// Long List Select
+export const LongList = {
+  args: {
+    label: 'Country',
+    placeholder: 'Select a country',
+    id: 'long-list',
+    options: [
+      { value: 'af', label: 'Afghanistan' },
+      { value: 'al', label: 'Albania' },
+      { value: 'dz', label: 'Algeria' },
+      { value: 'ar', label: 'Argentina' },
+      { value: 'au', label: 'Australia' },
+      { value: 'at', label: 'Austria' },
+      { value: 'bd', label: 'Bangladesh' },
+      { value: 'be', label: 'Belgium' },
+      { value: 'br', label: 'Brazil' },
+      { value: 'bg', label: 'Bulgaria' },
+      { value: 'kh', label: 'Cambodia' },
+      { value: 'ca', label: 'Canada' },
+      { value: 'cl', label: 'Chile' },
+      { value: 'cn', label: 'China' },
+      { value: 'co', label: 'Colombia' },
+      { value: 'hr', label: 'Croatia' },
+      { value: 'dk', label: 'Denmark' },
+      { value: 'eg', label: 'Egypt' },
+      { value: 'fi', label: 'Finland' },
+      { value: 'fr', label: 'France' },
+      { value: 'de', label: 'Germany' },
+      { value: 'gr', label: 'Greece' },
+      { value: 'in', label: 'India' },
+      { value: 'id', label: 'Indonesia' },
+      { value: 'ir', label: 'Iran' },
+      { value: 'iq', label: 'Iraq' },
+      { value: 'ie', label: 'Ireland' },
+      { value: 'it', label: 'Italy' },
+      { value: 'jp', label: 'Japan' },
+    ],
+  },
 }; 
