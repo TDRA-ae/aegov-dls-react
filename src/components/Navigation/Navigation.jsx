@@ -95,13 +95,13 @@ const NavItem = React.forwardRef(({
         );
     }
 
-    // If it's a secondary menu item
+    // If it's a secondary menu item (icon menu to the right)
     if (type === 'secondary') {
         return (
             <li ref={ref} {...props}>
                 <a
                     href={href || "#"}
-                    className="flex items-center justify-center flex-shrink-0 h-14 px-3"
+                    className="flex items-center justify-center flex-shrink-0 h-14 px-3 focus-visible:ring-primary-support-400 focus-visible:ring-2 focus-visible:ring-inset outline-none"
                     aria-label={children}
                     title={tooltipText || children}
                 >
@@ -121,6 +121,7 @@ const NavItem = React.forwardRef(({
                         "group inline-flex items-center gap-2 border-b-2 border-transparent px-3 py-4 font-bold transition-colors",
                         "hover:border-primary-800 hover:text-primary-800",
                         "[&[data-state=open]]:border-primary-800",
+                        "focus-visible:ring-primary-support-400 focus-visible:ring-2 focus-visible:ring-inset outline-none",
                         isActive && "border-primary-900 text-primary-900"
                     )}
                 >
@@ -175,6 +176,7 @@ const NavItem = React.forwardRef(({
                 href={href || "#"}
                 className={twMerge(
                     "inline-flex items-center gap-2 border-b-2 border-transparent px-3 py-4 font-bold transition-colors hover:border-primary-800 hover:text-primary-800",
+                    "focus-visible:ring-primary-support-400 focus-visible:ring-2 focus-visible:ring-inset outline-none",
                     isActive && "border-primary-900 text-primary-900"
                 )}
             >
