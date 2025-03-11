@@ -181,34 +181,6 @@ export const StackedCards = () => (
         ))}
       </Card.Stack>
     </div>
-
-    <div className="space-y-2">
-      <h3 className="text-lg font-semibold">Matrix Stack (Collapsed)</h3>
-      <Card.Stack direction="matrix" collapsed columns={3}>
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <Card key={i} className="bg-white" bordered>
-            <Note className="text-primary-500 w-10 h-10" />
-            <h5 className="text-h5 font-extrabold">Card {i}</h5>
-            <p>A card in a matrix layout.</p>
-            <Card.Link href="#">View details</Card.Link>
-          </Card>
-        ))}
-      </Card.Stack>
-    </div>
-
-    <div className="space-y-2">
-      <h3 className="text-lg font-semibold">Matrix Stack (With Gap)</h3>
-      <Card.Stack direction="matrix" columns={3} gap={4}>
-        {[1, 2, 3, 4, 5, 6].map((i) => (
-          <Card key={i} className="bg-white" bordered>
-            <Note className="text-primary-500 w-10 h-10" />
-            <h5 className="text-h5 font-extrabold">Card {i}</h5>
-            <p>A card in a matrix layout.</p>
-            <Card.Link href="#">View details</Card.Link>
-          </Card>
-        ))}
-      </Card.Stack>
-    </div>
   </div>
 );
 
