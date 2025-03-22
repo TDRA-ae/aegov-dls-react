@@ -348,7 +348,7 @@ const MobileNavigation = ({ children, logo }) => {
                                                         </div>
 
                                                         {hasDropdown && isSubmenuOpen && Array.isArray(props.dropdown) && (
-                                                            <div className="mt-2 pl-4">
+                                                            <div className="mt-2 pl-2">
                                                                 {props.dropdown.map((group, groupIndex) => (
                                                                     <div key={groupIndex} className="mb-4">
                                                                         <h3 className="text-primary-500 font-bold mb-2">{group.title}</h3>

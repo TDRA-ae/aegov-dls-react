@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Root, Trigger, Portal, Overlay, Content, Close, Title } from '@radix-ui/react-dialog'
 import { X } from '@phosphor-icons/react'
 import { cn } from '../../utils'
@@ -22,6 +22,8 @@ const Modal = ({
   trigger,
   ...props 
 }) => {
+  const [open, setOpen] = useState(false);
+
   const sizeClasses = {
     sm: 'sm:max-w-sm',
     md: 'sm:max-w-lg',
@@ -29,10 +31,12 @@ const Modal = ({
   }
 
   return (
-    <Root>
+    <Root open={open} onOpenChange={setOpen}>
       {trigger && (
         <Trigger asChild>
-          {trigger}
+          <button onClick={() => setOpen(true)}>
+            {trigger}
+          </button>
         </Trigger>
       )}
       <Portal>
@@ -58,7 +62,7 @@ const Modal = ({
               <Title className="text-xl font-semibold text-gray-900">
                 {title}
               </Title>
-              <Close className="rounded-lg p-1.5 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
+              <Close className="rounded-lg p-1.5 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400" onClick={() => setOpen(false)}>
                 <X className="h-5 w-5 text-gray-500" />
                 <span className="sr-only">Close</span>
               </Close>

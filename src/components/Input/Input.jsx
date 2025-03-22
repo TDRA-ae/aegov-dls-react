@@ -96,13 +96,13 @@ const Input = forwardRef(({
 
       <div className={inputContainerClasses}>
         {prefix && (
-          <div className="flex select-none items-center pl-4 text-gray-500">
+          <div className="flex select-none items-center px-2 text-gray-500">
             {prefix}
           </div>
         )}
 
         {type === 'search' && !prefix && (
-          <div className="flex select-none items-center pl-4 text-gray-500">
+          <div className="flex select-none items-center px-2 text-gray-500">
             {renderSearchIcon()}
           </div>
         )}

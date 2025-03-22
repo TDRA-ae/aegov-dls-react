@@ -69,12 +69,13 @@ const Dropdown = React.forwardRef((props, ref) => {
           align={align}
           side={side}
           className={twMerge(
-            'z-50 min-w-[12rem] overflow-hidden rounded-lg bg-white p-1 shadow-xl animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95',
+            'z-50 min-w-[12rem] overflow-hidden rounded-lg bg-white p-1 shadow-xl animate-in fade-in-0 zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 max-h-60 overflow-y-auto',
             className
           )}
           {...rest}
         >
           {groups.map((group, groupIndex) => (
+
             <Group key={groupIndex}>
               {group.label && (
                 <Label className="px-3 py-2 text-xs font-medium text-gray-500">
