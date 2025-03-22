@@ -31,7 +31,7 @@ const Modal = ({
   return (
     <Root>
       {trigger && (
-        <Trigger >
+        <Trigger asChild>
           {trigger}
         </Trigger>
       )}
