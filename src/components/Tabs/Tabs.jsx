@@ -60,7 +60,7 @@ const tabTriggerVariants = cva(
 )
 
 const tabContentVariants = cva(
-  'rounded-lg p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-0',
+  'p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-0',
   {
     variants: {
       variant: {
