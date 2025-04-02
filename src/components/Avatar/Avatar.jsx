@@ -24,6 +24,16 @@ const statusStyles = {
   none: 'hidden'
 }
 
+const borderRadiusStyles = {
+  xs: 'rounded-[4px]',
+  sm: 'rounded-[4px]',
+  base: 'rounded-[6px]',
+  lg: 'rounded-[6px]',
+  xl: 'rounded-[8px]',
+  '2xl': 'rounded-[8px]',
+  '3xl': 'rounded-[8px]'
+}
+
 const Avatar = ({ 
   src, 
   alt, 
@@ -44,7 +54,7 @@ const Avatar = ({
         className={cn(
           'relative inline-flex items-center justify-center overflow-hidden',
           sizeStyles[size],
-          variant === 'rounded' ? 'rounded-full' : 'rounded',
+          variant === 'rounded' ? 'rounded-full' : borderRadiusStyles[size],
           className
         )}
         {...props}
