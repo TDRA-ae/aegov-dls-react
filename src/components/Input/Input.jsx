@@ -67,15 +67,15 @@ const Input = forwardRef(({
       className="pr-4 text-gray-400 hover:text-gray-600 focus:outline-none"
     >
       {showPassword ? (
-        <EyeSlash className="h-5 w-5" />
+        <EyeSlash className="h-6 w-6" />
       ) : (
-        <Eye className="h-5 w-5" />
+        <Eye className="h-6 w-6" />
       )}
     </button>
   );
 
   const renderSearchIcon = () => (
-    <MagnifyingGlass className="h-5 w-5 text-gray-400" />
+    <MagnifyingGlass className="h-6 w-6 text-gray-400" />
   );
 
   return (

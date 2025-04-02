@@ -31,7 +31,7 @@ const Blockquote = ({ children, cite, author, authorTitle, style = 'soft' }) => 
         <blockquote
             cite={cite}
             className={`relative p-6 text-base font-medium text-gray-800 ${style === 'solid'
-                ? 'bg-primary-50 border-l-[10px] border-primary-500'
+                ? 'bg-primary-50 border-l-[10px] border-primary-500 ps-10 pe-10'
                 : 'pl-14'
                 }`}
         >

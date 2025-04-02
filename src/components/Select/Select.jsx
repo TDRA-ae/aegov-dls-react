@@ -75,7 +75,7 @@ const Select = forwardRef(({
   };
 
   const variantClasses = {
-    primary: 'focus-within:ring-primary-600 ring-primary-400',
+    primary: 'focus-within:ring-primary-400 ring-primary-400',
     secondary: 'focus-within:ring-secondary-600 ring-secondary-400',
     error: 'focus-within:ring-red-600 ring-red-400 bg-red-50'
   };

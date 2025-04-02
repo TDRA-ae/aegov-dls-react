@@ -51,7 +51,7 @@ const sizeStyles = {
 const variantStyles = {
   primary: {
     radio: 'border-primary-400 focus-visible:ring-primary-500 before:bg-primary-50',
-    indicator: 'bg-primary-600',
+    indicator: 'bg-aegold-450',
     hover: 'hover:border-primary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100 rtl:before:translate-x-2/4',
   },
   secondary: {
