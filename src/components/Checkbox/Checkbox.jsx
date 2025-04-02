@@ -91,7 +91,7 @@ const Checkbox = React.forwardRef((props, ref) => {
         value={value}
         asChild={asChild}
         className={twMerge(
-          'flex shrink-0 items-center justify-center rounded border-2 bg-whitely-50 transition-colors relative',
+          'flex shrink-0 items-center justify-center rounded border bg-whitely-50 transition-colors relative',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
           'disabled:cursor-not-allowed disabled:opacity-50 disabled:before:!hidden disabled:pointer-events-none',
           sizeStyles[size].checkbox,

@@ -59,19 +59,19 @@ const variantStyles = {
 
 const sizeStyles = {
   sm: {
-    container: 'p-3 gap-3',
+    container: 'px-4 py-3 gap-3',
     icon: 'h-5 w-5',
     text: 'text-sm',
     actionIcon: 'h-4 w-4',
   },
   base: {
-    container: 'p-4 gap-4',
+    container: 'px-6 py-4 gap-4',
     icon: 'h-7 w-7',
     text: 'text-base',
     actionIcon: 'h-5 w-5',
   },
   lg: {
-    container: 'p-5 gap-4',
+    container: 'px-7 py-5 gap-4',
     icon: 'h-8 w-8',
     text: 'text-lg',
     actionIcon: 'h-6 w-6',
