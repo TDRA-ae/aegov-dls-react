@@ -85,7 +85,7 @@ const AlertContent = ({ variantStyle, sizeStyle, title, children, action, style 
     </div>
     <div className="flex-1">
       {title && (
-        <div className={cn('font-semibold mb-2', sizeStyle.text)}>
+        <div className={cn('font-semibold mb-5', sizeStyle.text)}>
           {title}
         </div>
       )}
@@ -97,7 +97,7 @@ const AlertContent = ({ variantStyle, sizeStyle, title, children, action, style 
               <a
                 href={action.href}
                 className={cn(
-                  'inline-flex items-center gap-2 font-medium hover:underline hover:underline-offset-2',
+                  'underline underline-offset-1 inline-flex items-center gap-2 font-medium hover:underline hover:underline-offset-2',
                   variantStyle.link[style]
                 )}
               >

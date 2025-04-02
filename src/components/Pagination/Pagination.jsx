@@ -106,7 +106,7 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
                 className={cn(
                   "inline-flex h-8 w-8 items-center justify-center rounded-full text-sm",
                   currentPage === page
-                    ? "bg-primary-600 text-white"
+                    ? "bg-primary-550 text-white"
                     : "text-gray-700 hover:bg-primary-50 hover:text-primary-600"
                 )}
               >

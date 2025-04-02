@@ -109,10 +109,10 @@ Complex.args = {
       <p>So this is embarrassing, but looks that we have come across an unexpected situation causing a system error. We have logged this event and will be looking into fixing this.</p>
       <p className="mt-2">In the meantime, you may also report this as an error using our feedback system.</p>
       <div className="mt-6 flex items-center space-x-6">
-        <a href="#" className="font-bold hover:underline hover:underline-offset-2">
+        <a href="#" className="font-bold underline underline-offset-1 hover:underline hover:underline-offset-2">
           Report this error
         </a>
-        <a href="#" className="font-bold hover:underline hover:underline-offset-2">
+        <a href="#" className="font-bold underline underline-offset-1 hover:underline hover:underline-offset-2">
           Capture a screenshot
         </a>
       </div>
