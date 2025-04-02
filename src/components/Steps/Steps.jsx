@@ -75,11 +75,11 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
 
         {/* Label */}
         {showLabels && (
-          <span 
+          <span
             className={cn(
               'absolute text-sm font-medium text-gray-900',
-              isVertical 
-                ? 'left-14 top-2.5' 
+              isVertical
+                ? 'left-14 top-2.5'
                 : 'left-1/2 -translate-x-1/2 mt-14'
             )}
           >
@@ -91,7 +91,7 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
   )
 }
 
-const Steps = ({ 
+const Steps = ({
   steps,
   currentStep,
   size = 'base',
@@ -105,8 +105,8 @@ const Steps = ({
   const isVertical = orientation === 'vertical'
 
   return (
-    <nav 
-      aria-label="Progress" 
+    <nav
+      aria-label="Progress"
       className={cn(
         'relative',
         isVertical ? 'flex flex-col' : 'w-full',
@@ -121,7 +121,7 @@ const Steps = ({
         )}
       >
         {steps.map((step, index) => (
-          <Step 
+          <Step
             key={step.label}
             step={step}
             index={index}

@@ -10,7 +10,7 @@ const hyperlinkVariants = cva(
   {
     variants: {
       variant: {
-        default: 'underline underline-offset-2 text-primary-600 hover:text-primary-500 hover:decoration-2 active:text-primary-700',
+        default: 'underline underline-offset-1 text-primary-600 hover:text-primary-500 hover:decoration-2 active:text-primary-700',
         cta: 'px-2.5 py-2 -ml-2.5 font-semibold text-primary-600 hover:text-primary-500 hover:underline rtl:-mr-2.5 rtl:ml-0',
         soft: 'px-2.5 py-2 -ml-2.5 font-semibold text-primary-600 hover:text-primary-500 hover:bg-primary-50 rtl:-mr-2.5 rtl:ml-0',
         secondary: 'px-2.5 py-2 -ml-2.5 font-semibold text-gray-800 hover:text-gray-700 hover:underline rtl:-mr-2.5 rtl:ml-0',

@@ -49,7 +49,7 @@ const tabTriggerVariants = cva(
     variants: {
       variant: {
         default: 'py-6 px-1 text-base hover:text-gray-950 hover:border-primary-500 data-[state=active]:text-primary-600 data-[state=active]:border-primary-500',
-        pills: 'py-2 px-4 lg:px-6 text-base rounded-lg hover:bg-gray-50 data-[state=active]:bg-primary-100 data-[state=active]:text-primary-900',
+        pills: 'py-3 px-4 lg:px-6 text-base rounded-lg hover:bg-aeblack-50 data-[state=active]:bg-primary-100 data-[state=active]:text-primary-900',
         compact: 'py-4 px-1 text-sm hover:text-gray-950 hover:border-primary-500 data-[state=active]:text-primary-600 data-[state=active]:border-primary-500'
       }
     },
@@ -60,13 +60,13 @@ const tabTriggerVariants = cva(
 )
 
 const tabContentVariants = cva(
-  'rounded-lg p-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-0',
+  'rounded-lg p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-0',
   {
     variants: {
       variant: {
-        default: '',
+        default: 'border-t border-aeblack-100 border-t-2',
         pills: '',
-        compact: ''
+        compact: 'border-t border-aeblack-100 border-t-2'
       }
     }
   }
@@ -94,8 +94,10 @@ const Tabs = ({ variant = 'default', items, defaultValue, className, ...props })
             value={value}
             className={tabTriggerVariants({ variant })}
           >
-            {Icon && <Icon className="w-5 h-5" />}
-            <span className="whitespace-nowrap">{label}</span>
+            <div className="flex items-center gap-2">
+              {Icon && <Icon className="w-5 h-5" />}
+              <span className="whitespace-nowrap">{label}</span>
+            </div>
           </Trigger>
         ))}
       </List>
