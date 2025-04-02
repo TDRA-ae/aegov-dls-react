@@ -129,7 +129,7 @@ const Input = forwardRef(({
       {(error || helperText) && (
         <p
           className={cn(
-            'mt-1 text-sm',
+            'mt-1 text-sm text-aeblack-500',
             error ? 'text-red-600' : 'text-gray-500'
           )}
         >
