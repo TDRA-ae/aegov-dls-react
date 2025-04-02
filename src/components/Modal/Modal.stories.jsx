@@ -1,7 +1,7 @@
 import React from 'react'
 import Modal from './Modal'
 import Button from '../Button/Button'
-import { CheckCircle, Warning } from '@phosphor-icons/react'
+import { Check, Warning } from '@phosphor-icons/react'
 import { Close } from '@radix-ui/react-dialog'
 
 export default {
@@ -27,7 +27,7 @@ export const Simple = () => {
         </ul>
         <div className="flex justify-end gap-3 mt-6">
           <Close asChild>
-            <Button variant="soft">Close</Button>
+            <Button>Close</Button>
           </Close>
         </div>
       </div>
@@ -43,7 +43,7 @@ export const Success = () => {
     >
       <div className="text-center">
         <div className="mx-auto w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
-          <CheckCircle className="w-8 h-8 text-green-600" />
+          <Check className="w-8 h-8 text-green-600" />
         </div>
         <h3 className="mt-4 text-lg font-semibold text-gray-900">Payment successful</h3>
         <p className="mt-2 text-gray-600">

@@ -10,7 +10,7 @@ export default {
       {
         value: 'all',
         label: 'All services',
-        content: 'This is the content area for the tab "all services"'
+        content: <p className="px-2 py-4">This is the content area for the tab "all services"</p>
       },
       {
         value: 'cat1',
@@ -54,7 +54,7 @@ export const WithIcons = {
         icon: User,
         content: <>
           <h3 className="text-lg font-semibold">My account</h3>
-          <p>This is the content area for the tab "My account"</p>
+          <p className="py-4">This is the content area for the tab "My account"</p>
         </>
       },
       {

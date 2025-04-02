@@ -59,7 +59,7 @@ const Modal = ({
         >
           {title && (
             <div className="flex items-center justify-between mb-6">
-              <Title className="text-xl font-semibold text-gray-900">
+              <Title className="text-2xl font-semibold text-gray-900">
                 {title}
               </Title>
               <Close className="rounded-lg p-1.5 hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400" onClick={() => setOpen(false)}>
