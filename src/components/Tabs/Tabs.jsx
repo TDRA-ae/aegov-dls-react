@@ -44,7 +44,7 @@ const tabListVariants = cva(
 )
 
 const tabTriggerVariants = cva(
-  'inline-flex items-center gap-3 font-medium rounded-t-lg border-b-[3px] border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-0',
+  'items-center gap-3 font-medium rounded-t-lg border-b-[3px] border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 focus-visible:ring-offset-0',
   {
     variants: {
       variant: {

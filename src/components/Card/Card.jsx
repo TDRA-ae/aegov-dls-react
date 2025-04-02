@@ -63,7 +63,7 @@ const CardLink = React.forwardRef(({ href, children, className, ...props }, ref)
   <a
     ref={ref}
     href={href}
-    className={twMerge('inline-flex items-center text-primary-600 hover:text-primary-700 font-medium', className)}
+    className={twMerge('inline-flex items-center text-primary-600 hover:text-primary-800 font-medium', className)}
     {...props}
   >
     {children}
