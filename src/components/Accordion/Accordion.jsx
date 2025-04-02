@@ -46,7 +46,7 @@ const AccordionItem = React.memo(React.forwardRef(({ value, title, children, ico
       className="border-b border-gray-200 [.accordion-wrapper_&:last-child]:border-0"
     >
       <Header className="w-full">
-        <Trigger className="group flex w-full items-center justify-between py-4 text-left text-base font-semibold text-gray-900 aria-expanded:text-aegold-500 hover:text-aegold-500 focus:text-aegold-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
+        <Trigger className="group flex w-full items-center justify-between py-5 pe-2 ps-2 text-left text-base font-semibold text-gray-900 aria-expanded:text-aegold-500 hover:text-aegold-500 focus:text-aegold-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
           {title}
           <Icon
             weight="bold"
@@ -59,7 +59,7 @@ const AccordionItem = React.memo(React.forwardRef(({ value, title, children, ico
         </Trigger>
       </Header>
       <Content className="accordion-content overflow-hidden">
-        <div className="pb-4 pt-1 text-gray-700 [&_.accordion-wrapper]:px-4">
+        <div className="pb-4 pt-2 ps-2 pe-2 text-gray-700 [&_.accordion-wrapper]:px-4">
           {children}
         </div>
       </Content>

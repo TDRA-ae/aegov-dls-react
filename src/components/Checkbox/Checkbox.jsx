@@ -44,7 +44,7 @@ const sizeStyles = {
 
 const variantStyles = {
   primary: {
-    checkbox: 'border-primary-400 data-[state=checked]:bg-primary-600 data-[state=checked]:border-primary-600 before:bg-primary-50',
+    checkbox: 'border-aegold-450 data-[state=checked]:bg-aegold-450 data-[state=checked]:border-aegold-450 before:bg-primary-50 focus:ring-primary-400',
     hover: 'hover:border-primary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100 rtl:before:translate-x-2/4',
     focus: 'focus-visible:ring-primary-500',
   },

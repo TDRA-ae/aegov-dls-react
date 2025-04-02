@@ -27,7 +27,7 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
   }
 
   return (
-    <li 
+    <li
       key={step.label}
       className={cn(
         'relative flex items-center',

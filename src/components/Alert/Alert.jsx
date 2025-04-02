@@ -66,13 +66,13 @@ const sizeStyles = {
   },
   base: {
     container: 'p-4 gap-4',
-    icon: 'h-6 w-6',
+    icon: 'h-7 w-7',
     text: 'text-base',
     actionIcon: 'h-5 w-5',
   },
   lg: {
     container: 'p-5 gap-4',
-    icon: 'h-7 w-7',
+    icon: 'h-8 w-8',
     text: 'text-lg',
     actionIcon: 'h-6 w-6',
   },
