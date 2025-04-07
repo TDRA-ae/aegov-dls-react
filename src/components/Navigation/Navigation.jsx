@@ -11,6 +11,7 @@ import {
     Viewport,
     Indicator
 } from '@radix-ui/react-navigation-menu';
+import Tooltip from '../Tooltip/Tooltip';
 import { CaretDown, List as HamburgerMenu, X } from '@phosphor-icons/react';
 
 const dropdownSchema = z.array(z.object({
@@ -98,17 +99,19 @@ const NavItem = React.forwardRef(({
     // If it's a secondary menu item (icon menu to the right)
     if (type === 'secondary') {
         return (
-            <li ref={ref} {...props}>
-                <a
-                    href={href || "#"}
-                    className="flex items-center justify-center flex-shrink-0 h-14 px-3 focus-visible:ring-primary-support-400 focus-visible:ring-2 focus-visible:ring-inset outline-none"
-                    aria-label={children}
-                    title={tooltipText || children}
-                >
-                    {Icon && <Icon weight="regular" className="w-6 h-6 text-primary-600 hover:text-primary-500" />}
-                    <span className="sr-only">{children}</span>
-                </a>
-            </li>
+            <Tooltip content={tooltipText || children} side="bottom" delayDuration={0}>
+                <li ref={ref} {...props}>
+                    <a
+                        href={href || "#"}
+                        className="flex items-center justify-center flex-shrink-0 h-14 px-3 focus-visible:ring-primary-support-400 focus-visible:ring-2 focus-visible:ring-inset outline-none"
+                        aria-label={children}
+                        title={tooltipText || children}
+                    >
+                        {Icon && <Icon weight="regular" className="w-6 h-6 text-primary-600 hover:text-primary-500" />}
+                        <span className="sr-only">{children}</span>
+                    </a>
+                </li>
+            </Tooltip>
         );
     }
 

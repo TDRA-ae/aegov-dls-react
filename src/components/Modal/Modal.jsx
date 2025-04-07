@@ -45,7 +45,7 @@ const Modal = ({
           {...props}
           className={cn(
             "fixed left-[50%] top-[50%] z-50 translate-x-[-50%] translate-y-[-50%]",
-            "w-full p-6",
+            "w-full p-5",
             "bg-white rounded-lg shadow-lg",
             "focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
             "data-[state=open]:animate-in data-[state=closed]:animate-out",

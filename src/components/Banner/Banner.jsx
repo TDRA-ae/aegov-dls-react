@@ -111,9 +111,7 @@ const Banner = ({
           <p className="font-normal text-slate-800 mb-0">{children}</p>
         </div>
       ) : (
-        <div className="px-0">
-          {renderContent()}
-        </div>
+        renderContent()
       )}
       {variant === 'notice' && (
         <div className="flex items-center gap-4">
