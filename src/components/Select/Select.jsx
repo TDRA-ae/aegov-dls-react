@@ -137,14 +137,14 @@ const Select = forwardRef(({
         <Trigger className={triggerClasses} aria-label={label || placeholder}>
           <Value placeholder={placeholder} />
           <Icon asChild>
-            <CaretDown className="h-5 w-5 text-gray-400" />
+            <CaretDown className="h-5 w-5 text-aegold-700 font-bold" />
           </Icon>
         </Trigger>
 
         <Portal>
           <Content className={contentClasses} position="popper" sideOffset={5}>
             <ScrollUpButton className={scrollButtonClasses}>
-              <CaretUp className="h-4 w-4" />
+              <CaretUp className="h-4 w-4 font-bold" />
             </ScrollUpButton>
             <Viewport className={viewportClasses}>
               {options.map((option) => (
