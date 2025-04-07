@@ -41,7 +41,7 @@ const getBaseClasses = (variant, position, className) => twMerge(
 
 // Helper function to get action classes
 const getActionClasses = (variant) => twMerge(
-  'inline-flex items-center gap-1 font-medium underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-sm whitespace-nowrap',
+  'inline-flex items-center gap-2 font-medium underline underline-offset-1 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded-sm whitespace-nowrap',
   actionStyles[variant]
 );
 
@@ -88,7 +88,7 @@ const Banner = ({
   };
 
   const renderContent = () => (
-    <div className={`flex md:flex-wrap ${centered ? 'justify-center' : 'justify-between'} gap-3`}>
+    <>
       <div className={`flex flex-col md:flex-row gap-3 ${centered ? 'justify-center' : 'justify-start'} flex-grow`}>
         <div className={`${centered ? 'text-center' : 'text-left'}`}>{children}</div>
         <div className={`flex items-center ${centered ? 'justify-center' : 'justify-start'} gap-3`}>
@@ -100,7 +100,7 @@ const Banner = ({
           {renderDismissButton()}
         </div>
       )}
-    </div>
+    </>
   );
 
   return (

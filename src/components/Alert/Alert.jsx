@@ -66,7 +66,7 @@ const sizeStyles = {
   },
   base: {
     container: 'px-6 py-4 gap-4',
-    icon: 'h-7 w-7',
+    icon: 'h-5 w-5',
     text: 'text-base',
     actionIcon: 'h-5 w-5',
   },
