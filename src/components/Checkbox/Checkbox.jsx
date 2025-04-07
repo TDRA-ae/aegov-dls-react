@@ -78,7 +78,7 @@ const Checkbox = React.forwardRef((props, ref) => {
   const id = React.useMemo(() => providedId || `checkbox-${Math.random().toString(36).slice(2)}`, [providedId]);
 
   return (
-    <div className={twMerge('flex items-start gap-3', className)}>
+    <div className={twMerge('flex items-start gap-4', className)}>
       <Root
         ref={ref}
         id={id}
@@ -106,7 +106,7 @@ const Checkbox = React.forwardRef((props, ref) => {
         </Indicator>
       </Root>
       {(label || description) && (
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col gap-2">
           {label && (
             <label
               htmlFor={id}
