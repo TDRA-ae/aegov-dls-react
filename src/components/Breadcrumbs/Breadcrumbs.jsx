@@ -64,7 +64,7 @@ const BreadcrumbItem = ({ item, index, isLast, isFirst, showHomeIcon, renderSepa
       itemProp="item"
     >
       {renderIcon}
-      <span itemProp="name">{item.label}</span>
+      <span itemProp="name" className="truncate">{item.label}</span>
     </BreadcrumbLink>
   );
 };
