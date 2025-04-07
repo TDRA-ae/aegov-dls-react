@@ -57,7 +57,7 @@ export const NewsCard = {
             className="w-full h-auto rounded-xl"
           />
         </a>
-        <div className="p-6 space-y-6">
+        <div className="py-6 space-y-6">
           <div className="flex flex-wrap gap-3 text-sm text-gray-600">
             <span>11th Jun 2023</span>
             <a href="#" className="hover:text-primary-600">Press release</a>
