@@ -21,9 +21,18 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
   const isUpcoming = index > currentStep
 
   const sizeClasses = {
-    sm: 'h-8 w-8 text-sm',
-    base: 'h-10 w-10 text-base',
-    lg: 'h-12 w-12 text-lg'
+    link: {
+      sm: 'h-8 w-8 text-sm',
+      base: 'h-10 w-10 text-base',
+      lg: 'h-12 w-12 text-lg'
+    },
+    line: {
+      hr: {
+        sm: 'left-0 top-5 h-[3px] w-20 top-4',
+        base: 'left-2 top-5 h-[3px] w-20 top-5',
+        lg: 'left-4 top-5 h-[3px] w-20 top-6',
+      },
+    },
   }
 
   return (
@@ -31,7 +40,7 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
       key={step.label}
       className={cn(
         'relative flex items-center',
-        !isVertical && index !== totalSteps - 1 && 'flex-1'
+        !isVertical && index !== totalSteps - 1 && ''
       )}
     >
       {/* Connector line */}
@@ -42,7 +51,7 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
             isCompleted && 'bg-primary-500',
             isVertical 
               ? 'left-5 top-10 h-12 w-0.5' 
-              : 'left-2 top-5 h-[3px] w-20'
+              : sizeClasses.line.hr[size]
           )}
           style={{ transform: 'translateX(50%)' }}
           aria-hidden="true"
@@ -58,7 +67,7 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
           href={step.href}
           className={cn(
             'flex items-center justify-center rounded-full transition-all duration-200',
-            sizeClasses[size],
+            sizeClasses.link[size],
             isCompleted && 'bg-primary-500 text-white hover:ring-4 hover:ring-primary-100',
             isCurrent && 'bg-primary-500 text-white ring-4 ring-primary-100',
             isUpcoming && 'bg-white border-2 border-gray-200 text-gray-500 hover:border-primary-500 hover:text-primary-500'
