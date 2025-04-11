@@ -5,7 +5,7 @@ export default {
   title: 'Components/Select',
   component: Select,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
   },
   argTypes: {
     size: {
