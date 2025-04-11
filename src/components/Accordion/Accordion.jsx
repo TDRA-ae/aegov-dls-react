@@ -46,7 +46,7 @@ const AccordionItem = React.memo(React.forwardRef(({ value, title, children, ico
       className="border-b border-gray-200 [.accordion-wrapper_&:last-child]:border-0"
     >
       <Header className="w-full">
-        <Trigger className="group flex w-full items-center justify-between pe-3 ps-3 pb-5 pt-5 text-left text-base font-semibold text-gray-900 aria-expanded:text-aegold-500 hover:text-aegold-500 focus:text-aegold-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400">
+        <Trigger className="group flex w-full items-center justify-between pe-3 ps-3 pb-5 pt-5 text-left text-base font-semibold text-gray-900 aria-expanded:text-aegold-600 hover:text-aegold-600 focus:text-aegold-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-400 hover:transition-colors duration-150">
           {title}
           <Icon
             weight="bold"
