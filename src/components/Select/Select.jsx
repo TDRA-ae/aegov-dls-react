@@ -152,7 +152,7 @@ const Select = forwardRef(({
                   key={option.value}
                   value={option.value}
                   disabled={option.disabled}
-                  className={itemClasses}
+                  className={cn(itemClasses, labelSizeClasses[size], 'min-w-[200px]')}
                 >
                   <ItemText>{option.label}</ItemText>
                   <ItemIndicator className="absolute right-2 flex items-center justify-center">
