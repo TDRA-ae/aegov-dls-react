@@ -11,7 +11,7 @@ const paginationSchema = z.object({
   showFirstLast: z.boolean().optional(),
 });
 
-function Pagination({ currentPage, totalPages, onPageChange, className, showFirstLast = false }) {
+function Pagination({ currentPage, totalPages, onPageChange, className, showFirstLast = false, dir = 'ltr' }) {
   try {
     paginationSchema.parse({ currentPage, totalPages, onPageChange, className, showFirstLast });
   } catch (error) {
@@ -91,7 +91,11 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
           disabled={currentPage === 1}
           className="inline-flex items-center gap-2 px-2 py-1 text-gray-700 hover:text-primary-600 disabled:opacity-50"
         >
-          <CaretLeft className="h-5 w-5" />
+          {dir === 'rtl' ? (
+            <CaretRight className="h-5 w-5" />
+          ) : (
+            <CaretLeft className="h-5 w-5" />
+          )}
           <span className="hidden lg:inline">Previous</span>
         </button>
 
@@ -122,7 +126,11 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
           className="inline-flex items-center gap-2 px-2 py-1 text-gray-700 hover:text-primary-600 disabled:opacity-50"
         >
           <span className="hidden lg:inline">Next</span>
-          <CaretRight className="h-5 w-5" />
+          {dir === 'rtl' ? (
+            <CaretLeft className="h-5 w-5" />
+          ) : (
+            <CaretRight className="h-5 w-5" />
+          )}
         </button>
 
         {showFirstLast && (
@@ -132,7 +140,11 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
             className="inline-flex items-center gap-2 px-2 py-1 text-gray-700 hover:text-primary-600 disabled:opacity-50"
           >
             <span className="hidden lg:inline">Last</span>
-            <CaretDoubleRight className="h-5 w-5" />
+            {dir === 'rtl' ? (
+              <CaretDoubleLeft className="h-5 w-5" />
+            ) : (
+              <CaretDoubleRight className="h-5 w-5" />
+            )}
           </button>
         )}
       </div>
