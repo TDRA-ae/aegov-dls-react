@@ -93,7 +93,8 @@ const Select = forwardRef(({
   const contentClasses = cn(
     'overflow-hidden rounded-lg bg-white shadow-lg',
     'border border-gray-200',
-    'z-50'
+    'z-50',
+    'w-[var(--radix-select-trigger-width)]'
   );
 
   const viewportClasses = cn(
@@ -152,7 +153,7 @@ const Select = forwardRef(({
                   key={option.value}
                   value={option.value}
                   disabled={option.disabled}
-                  className={cn(itemClasses, labelSizeClasses[size], 'min-w-[200px]')}
+                  className={cn(itemClasses, labelSizeClasses[size])}
                 >
                   <ItemText>{option.label}</ItemText>
                   <ItemIndicator className="absolute right-2 flex items-center justify-center">
