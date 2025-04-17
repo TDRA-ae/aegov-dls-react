@@ -37,10 +37,10 @@ BreadcrumbLink.displayName = 'BreadcrumbLink';
 
 const BreadcrumbItem = ({ item, index, isLast, isFirst, showHomeIcon, renderSeparator, linkComponent }) => {
   const icon = isFirst && showHomeIcon ? (
-    <House className="size-4 mr-1" aria-hidden="true" />
+    <House className="size-4" aria-hidden="true" />
   ) : item.icon;
 
-  const renderIcon = icon && <span className="mr-1">{icon}</span>;
+  const renderIcon = icon && <span className="mr-1 rtl:ml-1 rtl:mr-0">{icon}</span>;
 
   // If item is a React element
   if (React.isValidElement(item)) {
@@ -85,7 +85,7 @@ const Breadcrumbs = ({
 
   const renderSeparator = () => {
     return separator === 'caret' 
-      ? <CaretRight className="w-4 h-4 text-gray-400 mx-2" aria-hidden="true" />
+      ? <CaretRight className="w-4 h-4 text-gray-400 mx-2 rtl:scale-x-[-1]" aria-hidden="true" />
       : <span className="mx-2 text-gray-400" aria-hidden="true">/</span>;
   };
 

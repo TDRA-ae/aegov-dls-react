@@ -149,7 +149,7 @@ WithCustomElements.parameters = {
 export const MixedUsage = Template.bind({});
 MixedUsage.args = {
   items: [
-    { label: 'Home', href: '/', icon: <House className="size-4" /> },
+    { label: 'News', href: '/', icon: <Newspaper className="size-4" /> },
     <CustomLink key="media" href="/media">
       Media centre
     </CustomLink>,
