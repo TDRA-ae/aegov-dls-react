@@ -27,9 +27,9 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
     },
     line: {
       hr: {
-        sm: 'left-0 top-5 h-[3px] w-20 top-4',
-        base: 'left-2 top-5 h-[3px] w-20 top-5',
-        lg: 'left-4 top-5 h-[3px] w-20 top-6',
+        sm: 'left-0 rtl:-left-2 top-5 h-[3px] w-20 top-4',
+        base: 'left-2 rtl:-left-2 top-5 h-[3px] w-20 top-5',
+        lg: 'left-4 rtl:-left-2 top-5 h-[3px] w-20 top-6',
       },
     },
   }
@@ -50,7 +50,7 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
             isCompleted && 'bg-primary-500',
             isVertical 
               ? 'left-[calc(50%-1px)] top-12 h-12 w-[3px]' 
-              : cn(sizeClasses.line.hr[size], 'translate-x-1/2')
+              : cn(sizeClasses.line.hr[size], 'translate-x-1/2 rtl:-translate-x-full')
           )}
           aria-hidden="true"
         />
