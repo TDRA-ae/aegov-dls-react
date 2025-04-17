@@ -332,15 +332,15 @@ const MobileNavigation = ({ children, logo }) => {
                                                             <a
                                                                 href={hasDropdown ? undefined : (props.href || "#")}
                                                                 onClick={hasDropdown ? () => toggleSubmenu(index) : undefined}
-                                                                className="py-2 w-full text-black font-medium"
+                                                                className={`py-2 w-full text-black font-medium ${hasDropdown ? 'rtl:pr-6' : ''}`}
                                                             >
-                                                                {Icon && <Icon className="inline-block mr-2 h-5 w-5" />}
+                                                                {Icon && <Icon className="inline-block mr-2 rtl:mr-0 rtl:ml-2 h-5 w-5" />}
                                                                 {props.children}
                                                             </a>
                                                             {hasDropdown && (
                                                                 <button
                                                                     onClick={() => toggleSubmenu(index)}
-                                                                    className="absolute right-0 top-2 w-6"
+                                                                    className="absolute right-0 top-3 w-6"
                                                                 >
                                                                     <CaretDown
                                                                         weight="bold"
@@ -393,7 +393,7 @@ const MobileNavigation = ({ children, logo }) => {
                                     return (
                                         <li key={index}>
                                             <a href={props.href || "#"} className="flex items-center text-black">
-                                                {Icon && <Icon className="w-5 h-5 mr-2" />}
+                                                {Icon && <Icon className="w-5 h-5 mr-2 rtl:mr-0 rtl:ml-2" />}
                                                 <span>{props.children}</span>
                                             </a>
                                         </li>
