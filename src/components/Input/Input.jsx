@@ -64,7 +64,7 @@ const Input = forwardRef(({
     <button
       type="button"
       onClick={() => setShowPassword(!showPassword)}
-      className="pr-4 text-gray-400 hover:text-gray-600 focus:outline-none"
+      className="pr-4 rtl:pl-4 text-gray-400 hover:text-gray-600 focus:outline-none"
     >
       {showPassword ? (
         <EyeSlash className="h-6 w-6" />

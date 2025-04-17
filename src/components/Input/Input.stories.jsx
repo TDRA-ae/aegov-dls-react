@@ -121,7 +121,7 @@ export const WithIcons = () => (
     />
     <Input
       label="Phone"
-      type="tel"
+      type="text"
       placeholder="Enter phone number"
       prefix={<Phone className="h-5 w-5" />}
       id="phone-prefix"
