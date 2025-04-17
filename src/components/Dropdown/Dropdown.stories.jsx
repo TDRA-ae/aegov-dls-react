@@ -34,15 +34,10 @@ export default {
 };
 
 const ExampleTrigger = () => (
-  <button 
-    className={`
-      flex items-center justify-between gap-2 rounded-lg border-2 border-transparent rtl:flex-row-reverse
-      bg-primary-600 px-6 py-3 text-sm font-medium text-white transition 
-      hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 disabled:opacity-50
-    `}>
-    Select an option
-    <CaretDown className="h-4 w-4" weight="bold" />
-  </button>
+  <Button variant="solid" styleType="secondary">
+    <span>Select An Option</span>
+    <CaretRight className="h-4 w-4 rotate-90" weight="bold" />
+  </Button>
 );
 
 // Basic dropdown with single group

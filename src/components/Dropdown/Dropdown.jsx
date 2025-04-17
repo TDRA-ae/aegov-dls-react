@@ -27,7 +27,12 @@ const DropdownItem = React.forwardRef(({ label, value, icon: Icon, onSelect }, r
   <Item
     ref={ref}
     value={value}
-    className="relative flex items-center gap-3 px-3 py-2 text-sm text-gray-700 outline-none transition-colors hover:bg-gray-50 hover:text-gray-900 focus:bg-gray-50 focus:text-gray-900 disabled:pointer-events-none disabled:opacity-50"
+    className={`
+      relative flex items-center gap-3 px-3 py-2 text-sm text-gray-700 outline-none transition-colors 
+      hover:bg-gray-50 hover:text-gray-900 focus:bg-gray-50 focus:text-gray-900 
+      disabled:pointer-events-none disabled:opacity-50
+      rtl:flex-row-reverse
+    `}
     onSelect={onSelect}
   >
     {Icon && <Icon className="h-4 w-4" weight="regular" />}
@@ -63,7 +68,7 @@ const Dropdown = React.forwardRef(({ children, groups, className, align = 'start
           {groups.map((group, groupIndex) => (
             <Group key={groupIndex}>
               {group.label && (
-                <Label className="px-3 py-2 text-xs font-medium text-gray-500">
+                <Label className="px-3 py-2 text-xs font-medium text-gray-500 rtl:text-right">
                   {group.label}
                 </Label>
               )}
