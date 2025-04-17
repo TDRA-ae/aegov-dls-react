@@ -81,7 +81,7 @@ const Select = forwardRef(({
   };
 
   const triggerClasses = cn(
-    'relative flex w-full items-center justify-between rounded-lg shadow-sm ring-2 ring-inset focus:ring-2 focus:ring-inset bg-whitely-50',
+    'relative flex rtl:flex-row-reverse rtl:text-right w-full items-center justify-between rounded-lg shadow-sm ring-2 ring-inset focus:ring-2 focus:ring-inset bg-whitely-50',
     'px-4 text-left outline-none',
     'data-[placeholder]:text-gray-400',
     variantClasses[error ? 'error' : variant],
@@ -102,7 +102,7 @@ const Select = forwardRef(({
   );
 
   const itemClasses = cn(
-    'relative flex items-center px-4 py-2 text-gray-900',
+    'relative flex rtl:flex-row-reverse rtl:text-right items-center px-4 py-2 text-gray-900',
     'data-[highlighted]:bg-primary-50 data-[highlighted]:text-primary-900',
     'data-[disabled]:text-gray-300 data-[disabled]:pointer-events-none',
     'outline-none cursor-pointer'
@@ -156,7 +156,7 @@ const Select = forwardRef(({
                   className={cn(itemClasses, labelSizeClasses[size])}
                 >
                   <ItemText>{option.label}</ItemText>
-                  <ItemIndicator className="absolute right-2 flex items-center justify-center">
+                  <ItemIndicator className="absolute right-2 rtl:left-2 rtl:right-auto flex items-center justify-center">
                     <Check className="h-4 w-4 text-primary-600" />
                   </ItemIndicator>
                 </Item>
