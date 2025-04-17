@@ -16,6 +16,7 @@ const AlertSchema = z.object({
     href: z.string(),
   }).optional(),
   id: z.string().optional(),
+  showIcon: z.boolean().default(true),
 });
 
 const variantStyles = {
@@ -78,11 +79,13 @@ const sizeStyles = {
   },
 };
 
-const AlertContent = ({ variantStyle, sizeStyle, title, children, action, style }) => (
+const AlertContent = ({ variantStyle, sizeStyle, title, children, action, style, showIcon=true }) => (
   <>
-    <div className="flex-shrink-0">
-      <variantStyle.icon className={cn('fill-current', sizeStyle.icon)} weight="fill" />
-    </div>
+    {showIcon && (
+      <div className="flex-shrink-0">
+        <variantStyle.icon className={cn('fill-current', sizeStyle.icon)} weight="fill" />
+      </div>
+    )}
     <div className="flex-1">
       {title && (
         <div className={cn('font-semibold mb-5', sizeStyle.text)}>
@@ -122,6 +125,7 @@ export const Alert = (props) => {
     style,
     action,
     onDismiss,
+    showIcon,
     ...rest
   } = AlertSchema.parse(props);
 
@@ -147,6 +151,7 @@ export const Alert = (props) => {
         children={children}
         action={action}
         style={style}
+        showIcon={showIcon}
       />
       {onDismiss && (
         <button 

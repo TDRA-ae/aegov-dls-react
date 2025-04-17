@@ -20,6 +20,9 @@ export default {
       control: 'select',
       options: ['soft', 'solid'],
     },
+    showIcon: {
+      control: 'boolean',
+    },
   },
 };
 
@@ -29,22 +32,51 @@ export const Info = Template.bind({});
 Info.args = {
   variant: 'info',
   children: "The conference starts at 10:00 AM in Hall B. Don't be late!",
+  showIcon: false,
 };
 
 export const Warning = Template.bind({});
 Warning.args = {
   variant: 'warning',
   children: 'Your password will expire in 3 days. Consider updating it now.',
+  showIcon: false,
 };
 
 export const Success = Template.bind({});
 Success.args = {
   variant: 'success',
   children: 'Your payment was processed successfully. Thank you!',
+  showIcon: false,
 };
 
 export const Error = Template.bind({});
 Error.args = {
+  variant: 'error',
+  children: 'Unable to connect to the server. Please try again later or contact support.',
+  showIcon: false,
+};
+
+
+export const InfoWithIcon = Template.bind({});
+InfoWithIcon.args = {
+  variant: 'info',
+  children: "The conference starts at 10:00 AM in Hall B. Don't be late!",
+};
+
+export const WarningWithIcon = Template.bind({});
+WarningWithIcon.args = {
+  variant: 'warning',
+  children: 'Your password will expire in 3 days. Consider updating it now.',
+};
+
+export const SuccessWithIcon = Template.bind({});
+SuccessWithIcon.args = {
+  variant: 'success',
+  children: 'Your payment was processed successfully. Thank you!',
+};
+
+export const ErrorWithIcon = Template.bind({});
+ErrorWithIcon.args = {
   variant: 'error',
   children: 'Unable to connect to the server. Please try again later or contact support.',
 };
@@ -86,19 +118,19 @@ Solid.args = {
   children: 'Unable to connect to the server. Please try again later or contact support.',
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  variant: 'success',
-  size: 'lg',
-  children: 'Your payment was processed successfully. Thank you!',
-};
+// export const Large = Template.bind({});
+// Large.args = {
+//   variant: 'success',
+//   size: 'lg',
+//   children: 'Your payment was processed successfully. Thank you!',
+// };
 
-export const Small = Template.bind({});
-Small.args = {
-  variant: 'info',
-  size: 'sm',
-  children: 'The conference starts at 10:00 AM in Hall B.',
-};
+// export const Small = Template.bind({});
+// Small.args = {
+//   variant: 'info',
+//   size: 'sm',
+//   children: 'The conference starts at 10:00 AM in Hall B.',
+// };
 
 export const Complex = Template.bind({});
 Complex.args = {
