@@ -58,7 +58,7 @@ const PopoverContent = React.forwardRef((props, ref) => {
         `}
       >
         {children}
-        <Close className="absolute right-3 top-3 inline-flex h-6 w-6 items-center justify-center rounded-full hover:bg-gray-100">
+        <Close className="absolute right-3 rtl:left-3 rtl:right-auto top-3 inline-flex h-6 w-6 items-center justify-center rounded-full hover:bg-gray-100">
           <X className="h-4 w-4 text-gray-500" weight="bold" />
         </Close>
         <Arrow className="fill-white" />
