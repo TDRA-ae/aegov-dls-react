@@ -61,13 +61,13 @@ export const Alert = () => {
   return (
     <Modal 
       variant="danger"
-      trigger={<Button variant="outline">Alert Modal</Button>}
+      trigger={<Button variant="outline">Alert Modal</Button>} 
     >
       <div className="sm:flex sm:items-start">
         <div className="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-red-100 sm:mx-0">
           <Warning className="h-8 w-8 text-red-600" />
         </div>
-        <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
+        <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left rtl:text-right rtl:sm:ml-0 rtl:sm:mr-4">
           <h3 className="text-lg font-semibold text-gray-900">
             Deactivate account
           </h3>
