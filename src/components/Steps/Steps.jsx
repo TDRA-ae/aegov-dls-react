@@ -1,7 +1,6 @@
 import React from 'react'
 import { Check } from '@phosphor-icons/react'
 import { z } from 'zod'
-import PropTypes from 'prop-types'
 import { cn } from '../../utils'
 
 const stepsSchema = z.object({
@@ -126,7 +125,7 @@ const Steps = ({
         role="list"
         className={cn(
           'flex',
-          isVertical ? 'flex-col space-y-12' : 'items-center justify-center space-x-24'
+          isVertical ? 'flex-col gap-12' : 'items-center justify-center gap-24'
         )}
       >
         {steps.map((step, index) => (

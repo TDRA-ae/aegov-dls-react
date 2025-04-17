@@ -85,8 +85,6 @@ export const Arabic = {
     steps: arabicSteps,
     currentStep: 2,
     showLabels: true,
-    locale: 'ar',
-    dir: 'rtl',
   },
 }
 
