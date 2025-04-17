@@ -107,6 +107,39 @@ export const WithGroups = () => (
   </Dropdown>
 );
 
+// Dropdown with multiple groups and labels
+export const ArabicDropdown = () => (
+  <Dropdown
+    groups={[
+      {
+        label: 'Account',
+        items: [
+          { label: 'Profile', value: 'profile', icon: User },
+          { label: 'Settings', value: 'settings', icon: Gear },
+        ],
+      },
+      {
+        label: 'Shopping',
+        items: [
+          { label: 'Cart', value: 'cart', icon: ShoppingCart },
+          { label: 'Orders', value: 'orders', icon: Package },
+          { label: 'Wishlist', value: 'wishlist', icon: Heart },
+        ],
+      },
+      {
+        label: 'Billing',
+        items: [
+          { label: 'Payment Methods', value: 'payment', icon: CreditCard },
+          { label: 'Subscriptions', value: 'subscriptions', icon: Package },
+        ],
+      },
+    ]}
+    dir="rtl"
+  >
+    <ExampleTrigger />
+  </Dropdown>
+);
+
 // Language selector dropdown
 export const LanguageSelector = () => (
   <Dropdown
