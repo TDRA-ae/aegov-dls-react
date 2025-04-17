@@ -31,13 +31,13 @@ const Blockquote = ({ children, cite, author, authorTitle, style = 'soft' }) => 
         <blockquote
             cite={cite}
             className={`relative p-6 text-base font-medium text-gray-800 ${style === 'solid'
-                ? 'bg-primary-50 border-l-[10px] border-primary-500 ps-10 pe-10'
-                : 'pl-14'
+                ? 'bg-primary-50 border-l-[10px] rtl:border-l-0 rtl:border-r-[10px] border-primary-500 ps-10 pe-10'
+                : 'pl-14 rtl:pl-0 rtl:pr-14'
                 }`}
         >
             {style === 'soft' && (
                 <QuoteIcon
-                    className="absolute left-0 top-0 h-12 w-12 text-gray-800 rtl:-scale-x-100"
+                    className="absolute left-0 top-0 h-12 w-12 text-gray-800 rtl:left-auto rtl:right-0 rtl:scale-x-[-1]"
                 />
             )}
             <p className="text-gray-800">{children}</p>
