@@ -86,7 +86,7 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
             className={cn(
               'absolute text-sm font-medium text-gray-900',
               isVertical
-                ? 'left-14 top-2.5'
+                ? 'left-14 rtl:left-0 rtl:right-14 top-2.5'
                 : 'left-1/2 -translate-x-1/2 mt-14'
             )}
           >
