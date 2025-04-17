@@ -117,52 +117,52 @@ export const Default = () => {
     <Navigation isMobile={isMobile} logo={<Logo />}>
       <MainMenu>
         <NavItem icon={House} href="#" isActive>
-        Home
-      </NavItem>
-      <NavItem href="#">
-        Our services
-      </NavItem>
-      <NavItem
-        href="#"
-        dropdown={[
-          {
-            title: 'Sub Title',
-            items: [
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-            ],
-          },
-          {
-            title: 'Sub Title',
-            items: [
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-            ],
-          },
-          {
-            title: 'Sub Title',
-            items: [
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-              { label: 'Sub Item', href: '#' },
-            ],
-          },
-        ]}
-      >
-        About us
-      </NavItem>
-    </MainMenu>
-    <SecondaryMenu>
-      <NavItem type="secondary" icon={User} href="#" tooltipText="Login">
-        Login
-      </NavItem>
-      <NavItem type="secondary" icon={Accessibility} href="#" tooltipText="Accessibility">
-        Accessibility
-      </NavItem>
-      <NavItem type="secondary" icon={Globe} href="#" tooltipText="Switch language">
-        Switch language
+          Home
+        </NavItem>
+        <NavItem href="#">
+          Our services
+        </NavItem>
+        <NavItem
+          href="#"
+          dropdown={[
+            {
+              title: 'Sub Title',
+              items: [
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+              ],
+            },
+            {
+              title: 'Sub Title',
+              items: [
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+              ],
+            },
+            {
+              title: 'Sub Title',
+              items: [
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+                { label: 'Sub Item', href: '#' },
+              ],
+            },
+          ]}
+        >
+          About us
+        </NavItem>
+      </MainMenu>
+      <SecondaryMenu>
+        <NavItem type="secondary" icon={User} href="#" tooltipText="Login">
+          Login
+        </NavItem>
+        <NavItem type="secondary" icon={Accessibility} href="#" tooltipText="Accessibility">
+          Accessibility
+        </NavItem>
+        <NavItem type="secondary" icon={Globe} href="#" tooltipText="Switch language">
+          Switch language
         </NavItem>
       </SecondaryMenu>
     </Navigation>

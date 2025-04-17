@@ -121,7 +121,7 @@ const NavItem = React.forwardRef(({
             <Item className="group relative z-[1]">
                 <Trigger 
                     className={twMerge(
-                        "group inline-flex items-center gap-2 border-b-2 border-transparent px-3 py-4 font-bold transition-colors",
+                        "group inline-flex rtl:flex-row-reverse items-center gap-2 border-b-2 border-transparent px-3 py-4 font-bold transition-colors",
                         "hover:border-primary-800 hover:text-primary-800",
                         "[&[data-state=open]]:border-primary-800",
                         "focus-visible:ring-primary-support-400 focus-visible:ring-2 focus-visible:ring-inset outline-none",
@@ -138,12 +138,15 @@ const NavItem = React.forwardRef(({
                 </Trigger>
 
                 <Content
-                className="mt-2 absolute z-50 w-[300px] data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight">
+                    className={`
+                        mt-2 absolute z-50 w-[300px] rtl:right-0
+                        data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight
+                    `}>
                     <div className="rounded-lg border border-aeblack-100 bg-whitely-50 p-4 shadow-lg">
                         {React.isValidElement(dropdown) ? (
                             dropdown
                         ) : (
-                            <div className="flex flex-col">
+                            <div className="flex flex-col rtl:text-right">
                                 {dropdown.map((group, index) => (
                                     <div key={index} className="mb-6 last:mb-0">
                                         <h2 className="mb-2 text-primary-500 font-bold">{group.title}</h2>
@@ -178,7 +181,7 @@ const NavItem = React.forwardRef(({
             <Link
                 href={href || "#"}
                 className={twMerge(
-                    "inline-flex items-center gap-2 border-b-2 border-transparent px-3 py-4 font-bold transition-colors hover:border-primary-800 hover:text-primary-800",
+                    "inline-flex rtl:flex-row-reverse items-center gap-2 border-b-2 border-transparent px-3 py-4 font-bold transition-colors hover:border-primary-800 hover:text-primary-800",
                     "focus-visible:ring-primary-support-400 focus-visible:ring-2 focus-visible:ring-inset outline-none",
                     isActive && "border-primary-900 text-primary-900"
                 )}
@@ -203,7 +206,7 @@ const MainMenu = React.forwardRef(({ children, className, ...props }, ref) => {
 
     return (
         <Root className="relative z-[1]" ref={ref} {...props}>
-            <List className={twMerge("flex items-center gap-1", className)}>
+            <List className={twMerge("flex items-center gap-1 rtl:flex-row-reverse", className)}>
                 {children}
                 <Indicator className="top-full z-[1] flex h-[10px] items-end justify-center overflow-hidden transition-[width,transform_250ms_ease]">
                     <div className="relative top-[70%] h-[10px] w-[10px] rotate-[45deg] rounded-tl-[2px] bg-white" />
