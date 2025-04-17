@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Form from '@radix-ui/react-form'
 import { FileUpload } from './FileUpload'
-
+import { UploadSimple } from '@phosphor-icons/react'
 export default {
   title: 'Components/FileUpload',
   component: FileUpload,
@@ -50,20 +50,27 @@ const Template = (args) => {
   )
 }
 
+const UploadLabel = ({ disabled }) => (
+  <>
+    <UploadSimple size={20} className={disabled ? 'opacity-50' : ''} />
+    Upload file
+  </>
+)
+
 // Update all story exports to use the template
-export const Default = {
-  render: (args) => <Template {...args} />,
-  args: {
-    variant: 'default',
-    maxFiles: 1,
-    disabled: false,
-    acceptedFileTypes: {
+export const Default = () => (
+  <FileUpload
+    variant="default"
+    maxFiles={1}
+    disabled={false}
+    acceptedFileTypes={{
       'image/jpeg': [],
       'image/png': [],
       'image/gif': []
-    }
-  },
-}
+    }}
+    label={<UploadLabel disabled={false} />}
+  />
+)
 
 export const Simple = {
   render: (args) => <Template {...args} />,
@@ -103,7 +110,8 @@ export const DragDrop = {
       'image/jpeg': [],
       'image/png': [],
       'image/gif': []
-    }
+    },
+    label: 'Drag and drop files here'
   },
 }
 
@@ -131,7 +139,8 @@ export const MultipleFiles = {
       'image/jpeg': [],
       'image/png': [],
       'image/gif': []
-    }
+    },
+    label: 'Drag and drop files here'
   },
 }
 
@@ -145,7 +154,8 @@ export const DocumentUpload = {
       'application/pdf': [],
       'application/msword': [],
       'application/vnd.openxmlformats-officedocument.wordprocessingml.document': []
-    }
+    },
+    label: 'Upload documents'
   },
 }
 

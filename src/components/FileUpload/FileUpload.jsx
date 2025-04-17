@@ -13,23 +13,8 @@ const DEFAULT_ACCEPTED_FILES = {
 
 const MAX_FILE_SIZE = 10 * 1024 * 1024 // 50MB
 
-// Move schema creation inside component to access props
-const createFileSchema = (maxFiles, acceptedFileTypes) => z.object({
-  files: z.any()
-    .refine((files) => files?.length > 0, 'Please select at least one file')
-    .refine((files) => files?.length <= maxFiles, `You can only upload up to ${maxFiles} files`)
-    .refine((files) => {
-      return Array.from(files).every(file => 
-        Object.keys(acceptedFileTypes).includes(file.type)
-      )
-    }, `Only ${Object.keys(acceptedFileTypes).map(type => type.split('/')[1].toUpperCase()).join(', ')} files are allowed`)
-    .refine((files) => {
-      return Array.from(files).every(file => file.size <= MAX_FILE_SIZE)
-    }, 'Files must be less than 50MB')
-})
-
 // Variant Components
-const SimpleVariant = ({ fileInputRef, disabled, acceptedFileTypes, maxFiles, handleFileSelect, selectedFiles }) => (
+const SimpleVariant = ({ label, fileInputRef, disabled, acceptedFileTypes, maxFiles, handleFileSelect, selectedFiles }) => (
   <div className="w-full">
     <div className={`flex border rounded-lg overflow-hidden ${disabled ? 'opacity-50' : ''}`}>
       <label>
@@ -41,7 +26,7 @@ const SimpleVariant = ({ fileInputRef, disabled, acceptedFileTypes, maxFiles, ha
           asChild
         >
           <span className={`cursor-pointer ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}>
-            Choose File
+            {label}
             <input
               ref={fileInputRef}
               type="file"
@@ -61,7 +46,7 @@ const SimpleVariant = ({ fileInputRef, disabled, acceptedFileTypes, maxFiles, ha
   </div>
 )
 
-const PreviewVariant = ({ fileInputRef, disabled, handleFileSelect, previewUrl }) => (
+const PreviewVariant = ({ label, fileInputRef, disabled, handleFileSelect, previewUrl }) => (
   <div className="flex items-center gap-3">
     <div className={`h-12 w-12 flex items-center justify-center bg-gray-100 rounded-full overflow-hidden ${disabled ? 'opacity-50' : ''}`}>
       {previewUrl ? (
@@ -79,8 +64,7 @@ const PreviewVariant = ({ fileInputRef, disabled, handleFileSelect, previewUrl }
         asChild
       >
         <span className={`flex items-center gap-2 cursor-pointer ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}>
-          <UploadSimple size={20} className={disabled ? 'opacity-50' : ''} />
-          Upload an image
+          {label}
           <input
             ref={fileInputRef}
             type="file"
@@ -96,7 +80,7 @@ const PreviewVariant = ({ fileInputRef, disabled, handleFileSelect, previewUrl }
   </div>
 )
 
-const DragDropVariant = ({ getRootProps, getInputProps, isDragActive, disabled, fileInputRef, acceptedFileTypes, maxFiles }) => (
+const DragDropVariant = ({ label, getRootProps, getInputProps, isDragActive, disabled, fileInputRef, acceptedFileTypes, maxFiles }) => (
   <div
     {...getRootProps()}
     className={`border-2 border-dashed rounded-lg p-8 text-center transition-colors
@@ -109,7 +93,8 @@ const DragDropVariant = ({ getRootProps, getInputProps, isDragActive, disabled, 
         className={`mb-2 ${isDragActive ? 'text-primary-500' : 'text-gray-400'}`} 
       />
       <span className={`font-semibold ${isDragActive ? 'text-primary-600' : 'text-gray-600'}`}>
-        {isDragActive ? 'Drop files here...' : 'Upload files'}
+        {/* {isDragActive ? 'Drop files here...' : 'Upload files'} */}
+        {label}
       </span>
       <input {...getInputProps()} ref={fileInputRef} />
       <span className={`text-gray-500 mt-1 ${disabled ? 'opacity-50' : ''}`}>
@@ -122,7 +107,7 @@ const DragDropVariant = ({ getRootProps, getInputProps, isDragActive, disabled, 
   </div>
 )
 
-const DefaultVariant = ({ fileInputRef, disabled, acceptedFileTypes, maxFiles, handleFileSelect }) => (
+const DefaultVariant = ({ label, fileInputRef, disabled, acceptedFileTypes, maxFiles, handleFileSelect }) => (
   <label>
     <Button
       disabled={disabled}
@@ -132,8 +117,7 @@ const DefaultVariant = ({ fileInputRef, disabled, acceptedFileTypes, maxFiles, h
       asChild
     >
       <span className={`flex items-center gap-2 cursor-pointer ${disabled ? 'cursor-not-allowed opacity-50' : ''}`}>
-        <UploadSimple size={20} className={disabled ? 'opacity-50' : ''} />
-        Upload file
+        {label}
         <input
           ref={fileInputRef}
           type="file"
@@ -154,7 +138,8 @@ export function FileUpload({
   maxFiles = 1,
   disabled = false,
   className = '',
-  acceptedFileTypes = DEFAULT_ACCEPTED_FILES
+  acceptedFileTypes = DEFAULT_ACCEPTED_FILES,
+  label = 'Upload file'
 }) {
   // State and refs
   const [selectedFiles, setSelectedFiles] = React.useState([])
@@ -162,23 +147,6 @@ export function FileUpload({
   const [previewUrl, setPreviewUrl] = React.useState(null)
   const fileInputRef = React.useRef(null)
   
-  // Validation schema - now using acceptedFileTypes from props
-  const fileSchema = React.useMemo(
-    () => z.object({
-      files: z.any()
-        .refine((files) => files?.length > 0, 'Please select at least one file')
-        .refine((files) => {
-          return Array.from(files).every(file => 
-            Object.keys(acceptedFileTypes).includes(file.type)
-          )
-        }, `Only ${Object.keys(acceptedFileTypes).map(type => type.split('/')[1].toUpperCase()).join(', ')} files are allowed`)
-        .refine((files) => {
-          return Array.from(files).every(file => file.size <= MAX_FILE_SIZE)
-        }, 'Files must be less than 50MB')
-    }),
-    [acceptedFileTypes]
-  )
-
   // Dropzone configuration
   const onDrop = React.useCallback((acceptedFiles, rejectedFiles) => {
     if (rejectedFiles?.length > 0) {
@@ -308,6 +276,7 @@ export function FileUpload({
   // Variant renderer
   const renderVariant = () => {
     const commonProps = {
+      label,
       fileInputRef,
       disabled,
       acceptedFileTypes,
