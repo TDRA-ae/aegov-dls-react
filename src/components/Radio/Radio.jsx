@@ -11,7 +11,6 @@ const RadioSchema = z.object({
   required: z.boolean().optional(),
   disabled: z.boolean().optional(),
   orientation: z.enum(['horizontal', 'vertical']).optional(),
-  dir: z.enum(['ltr', 'rtl']).optional(),
   className: z.string().optional(),
   children: z.any().optional(),
   size: z.enum(['sm', 'base', 'lg']).optional(),
@@ -52,12 +51,12 @@ const variantStyles = {
   primary: {
     radio: 'border-primary-400 focus-visible:ring-primary-500 before:bg-primary-50',
     indicator: 'bg-aegold-450',
-    hover: 'hover:border-primary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100 rtl:before:translate-x-2/4',
+    hover: 'hover:border-primary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100',
   },
   secondary: {
     radio: 'border-secondary-400 focus-visible:ring-secondary-500 before:bg-secondary-50',
     indicator: 'bg-secondary-800',
-    hover: 'hover:border-secondary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100 rtl:before:translate-x-2/4',
+    hover: 'hover:border-secondary-500 before:absolute before:start-2/4 before:top-2/4 before:mix-blend-multiply before:h-12 before:w-12 before:-translate-x-2/4 before:-translate-y-2/4 before:scale-0 before:rounded-full before:transition-all hover:before:scale-100',
   },
 };
 
@@ -83,14 +82,14 @@ const RadioItem = React.forwardRef((props, ref) => {
   const isDisabled = radioGroupDisabled || disabled;
 
   return (
-    <div className={twMerge("flex items-start space-x-4 rtl:space-x-reverse", className)}>
+    <div className={twMerge("flex rtl:flex-row-reverse rtl:text-right items-start gap-4", className)}>
       <Item
         ref={ref}
         id={radioId}
         value={value}
         disabled={isDisabled}
         className={twMerge(
-          'relative border-2 rounded-full bg-whitely-50 shrink-0',
+          'relative border-2 rounded-full bg-whitely-50 shrink-0 mt-[3px]',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
           'disabled:cursor-not-allowed disabled:opacity-50 disabled:border-primary-200 disabled:before:!hidden disabled:pointer-events-none',
           'transition-colors',
@@ -149,7 +148,6 @@ const Radio = React.forwardRef((props, ref) => {
     required,
     disabled,
     orientation = 'vertical',
-    dir,
     className,
     children,
     size = 'base',
@@ -167,10 +165,9 @@ const Radio = React.forwardRef((props, ref) => {
       required={required}
       disabled={disabled}
       orientation={orientation}
-      dir={dir}
       className={twMerge(
         'space-y-6',
-        orientation === 'horizontal' && 'flex space-x-8 space-y-0 rtl:space-x-reverse',
+        orientation === 'horizontal' && 'flex space-x-8 space-y-0',
         className
       )}
       {...rest}
