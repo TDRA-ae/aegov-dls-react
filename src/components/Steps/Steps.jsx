@@ -49,10 +49,9 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
             'absolute bg-gray-300 transition-colors duration-200',
             isCompleted && 'bg-primary-500',
             isVertical 
-              ? 'left-5 top-10 h-12 w-0.5' 
-              : sizeClasses.line.hr[size]
+              ? 'left-[calc(50%-1px)] top-12 h-12 w-[3px]' 
+              : cn(sizeClasses.line.hr[size], 'translate-x-1/2')
           )}
-          style={{ transform: 'translateX(50%)' }}
           aria-hidden="true"
         />
       )}
@@ -125,7 +124,7 @@ const Steps = ({
         role="list"
         className={cn(
           'flex',
-          isVertical ? 'flex-col gap-12' : 'items-center justify-center gap-24'
+          isVertical ? 'flex-col gap-16' : 'items-center justify-center gap-24'
         )}
       >
         {steps.map((step, index) => (
