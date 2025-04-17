@@ -11,7 +11,7 @@ const paginationSchema = z.object({
   showFirstLast: z.boolean().optional(),
 });
 
-function Pagination({ currentPage, totalPages, onPageChange, className, showFirstLast = false, dir = 'ltr' }) {
+function Pagination({ currentPage, totalPages, onPageChange, className, showFirstLast = false }) {
   try {
     paginationSchema.parse({ currentPage, totalPages, onPageChange, className, showFirstLast });
   } catch (error) {
@@ -50,6 +50,8 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
     return pages;
   };
 
+  const iconClasses = "h-5 w-5 rtl:-scale-x-100";
+
   return (
     <div className={cn("flex items-center justify-center", className)}>
       {/* Mobile Pagination */}
@@ -59,7 +61,7 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
           disabled={currentPage === 1}
           className="inline-flex items-center gap-2 px-2 py-1 text-gray-700 disabled:opacity-50"
         >
-          <CaretLeft className="h-5 w-5" />
+          <CaretLeft className={iconClasses} />
           <span>Previous</span>
         </button>
         <span className="text-sm">Page {currentPage} of {totalPages}</span>
@@ -69,7 +71,7 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
           className="inline-flex items-center gap-2 px-2 py-1 text-gray-700 disabled:opacity-50"
         >
           <span>Next</span>
-          <CaretRight className="h-5 w-5" />
+          <CaretRight className={iconClasses} />
         </button>
       </div>
 
@@ -81,7 +83,7 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
             disabled={currentPage === 1}
             className="inline-flex items-center gap-2 px-2 py-1 text-gray-700 hover:text-primary-600 disabled:opacity-50"
           >
-            <CaretDoubleLeft className="h-5 w-5" />
+            <CaretDoubleLeft className={iconClasses} />
             <span className="hidden lg:inline">First</span>
           </button>
         )}
@@ -91,11 +93,7 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
           disabled={currentPage === 1}
           className="inline-flex items-center gap-2 px-2 py-1 text-gray-700 hover:text-primary-600 disabled:opacity-50"
         >
-          {dir === 'rtl' ? (
-            <CaretRight className="h-5 w-5" />
-          ) : (
-            <CaretLeft className="h-5 w-5" />
-          )}
+          <CaretLeft className={iconClasses} />
           <span className="hidden lg:inline">Previous</span>
         </button>
 
@@ -126,11 +124,7 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
           className="inline-flex items-center gap-2 px-2 py-1 text-gray-700 hover:text-primary-600 disabled:opacity-50"
         >
           <span className="hidden lg:inline">Next</span>
-          {dir === 'rtl' ? (
-            <CaretLeft className="h-5 w-5" />
-          ) : (
-            <CaretRight className="h-5 w-5" />
-          )}
+          <CaretRight className={iconClasses} />
         </button>
 
         {showFirstLast && (
@@ -140,11 +134,7 @@ function Pagination({ currentPage, totalPages, onPageChange, className, showFirs
             className="inline-flex items-center gap-2 px-2 py-1 text-gray-700 hover:text-primary-600 disabled:opacity-50"
           >
             <span className="hidden lg:inline">Last</span>
-            {dir === 'rtl' ? (
-              <CaretDoubleLeft className="h-5 w-5" />
-            ) : (
-              <CaretDoubleRight className="h-5 w-5" />
-            )}
+            <CaretDoubleRight className={iconClasses} />
           </button>
         )}
       </div>
