@@ -16,7 +16,6 @@ const DropdownGroupSchema = z.object({
 });
 
 const DropdownSchema = z.object({
-  trigger: z.any(),
   groups: z.array(DropdownGroupSchema),
   className: z.string().optional(),
   align: z.enum(['start', 'center', 'end']).optional(),
@@ -41,26 +40,13 @@ const DropdownItem = React.forwardRef(({ label, value, icon: Icon, onSelect }, r
 
 DropdownItem.displayName = 'DropdownItem';
 
-const Dropdown = React.forwardRef((props, ref) => {
-  const {
-    trigger,
-    groups,
-    className,
-    align = 'start',
-    side = 'bottom',
-    onSelect,
-    ...rest
-  } = DropdownSchema.parse(props);
+const Dropdown = React.forwardRef(({ children, groups, className, align = 'start', side = 'bottom', onSelect, ...rest }, ref) => {
+  DropdownSchema.parse({ groups, className, align, side, onSelect });
 
   return (
     <Root>
       <Trigger asChild>
-        {trigger || (
-          <button className="inline-flex items-center justify-between gap-2 rounded-lg border-2 border-transparent bg-primary-600 px-6 py-3 text-sm font-medium text-white transition hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 disabled:opacity-50">
-            Select an option
-            <CaretDown className="h-4 w-4" weight="bold" />
-          </button>
-        )}
+        <div>{children}</div>
       </Trigger>
 
       <Portal>
@@ -75,7 +61,6 @@ const Dropdown = React.forwardRef((props, ref) => {
           {...rest}
         >
           {groups.map((group, groupIndex) => (
-
             <Group key={groupIndex}>
               {group.label && (
                 <Label className="px-3 py-2 text-xs font-medium text-gray-500">

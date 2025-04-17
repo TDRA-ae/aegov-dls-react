@@ -1,6 +1,7 @@
 import React from 'react';
 import Dropdown from './Dropdown';
 import Button from '../Button/Button';
+import { CaretDown } from '@phosphor-icons/react';
 import { 
   User, 
   Bell, 
@@ -32,10 +33,22 @@ export default {
   },
 };
 
+const ExampleTrigger = () => (
+  <button 
+    className={`
+      flex items-center justify-between gap-2 rounded-lg border-2 border-transparent rtl:flex-row-reverse
+      bg-primary-600 px-6 py-3 text-sm font-medium text-white transition 
+      hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2 disabled:opacity-50
+    `}>
+    Select an option
+    <CaretDown className="h-4 w-4" weight="bold" />
+  </button>
+);
+
 // Basic dropdown with single group
-export const Default = {
-  args: {
-    groups: [
+export const Default = () => (
+  <Dropdown
+    groups={[
       {
         items: [
           { label: 'Profile', value: 'profile' },
@@ -43,14 +56,16 @@ export const Default = {
           { label: 'Logout', value: 'logout' },
         ],
       },
-    ],
-  },
-};
+    ]}
+  >
+    <ExampleTrigger />
+  </Dropdown>
+);
 
 // Dropdown with icons
-export const WithIcons = {
-  args: {
-    groups: [
+export const WithIcons = () => (
+  <Dropdown
+    groups={[
       {
         items: [
           { label: 'Profile', value: 'profile', icon: User },
@@ -59,14 +74,16 @@ export const WithIcons = {
           { label: 'Logout', value: 'logout', icon: SignOut },
         ],
       },
-    ],
-  },
-};
+    ]}
+  >
+    <ExampleTrigger />
+  </Dropdown>
+);
 
 // Dropdown with multiple groups and labels
-export const WithGroups = {
-  args: {
-    groups: [
+export const WithGroups = () => (
+  <Dropdown
+    groups={[
       {
         label: 'Account',
         items: [
@@ -89,42 +106,15 @@ export const WithGroups = {
           { label: 'Subscriptions', value: 'subscriptions', icon: Package },
         ],
       },
-    ],
-  },
-};
-
-// {
-//   args: {
-//     trigger: (
-//       <Button variant="outline" styleType="secondary">
-//         <Globe className="h-4 w-4" weight="regular" />
-//         <span>Language</span>
-//         <CaretRight className="h-4 w-4 rotate-90" weight="bold" />
-//       </Button>
-//     ),
-//     groups: [
-//       {
-//         items: [
-//           { label: 'English', value: 'en' },
-//           { label: 'Arabic', value: 'ar' },
-//         ],
-//       },
-//     ],
-//   },
-// };
+    ]}
+  >
+    <ExampleTrigger />
+  </Dropdown>
+);
 
 // Language selector dropdown
 export const LanguageSelector = () => (
   <Dropdown
-    trigger={
-      <div>
-        <Button variant="outline" styleType="secondary">
-          <Globe className="h-4 w-4" weight="regular" />
-          <span>Language</span>
-          <CaretRight className="h-4 w-4 rotate-90" weight="bold" />
-        </Button>
-      </div>
-    }
     groups={[
       {
         items: [
@@ -133,7 +123,13 @@ export const LanguageSelector = () => (
         ],
       }
     ]}
-  />
+  >
+    <Button variant="outline" styleType="secondary">
+      <Globe className="h-4 w-4" weight="regular" />
+      <span>Language</span>
+      <CaretRight className="h-4 w-4 rotate-90" weight="bold" />
+    </Button>
+  </Dropdown>
 );
 
 // Dropdown with different alignments
@@ -149,7 +145,9 @@ export const Alignments = () => (
           ],
         },
       ]}
-    />
+    >
+      <ExampleTrigger />
+    </Dropdown>
     <Dropdown
       align="center"
       groups={[
@@ -160,7 +158,9 @@ export const Alignments = () => (
           ],
         },
       ]}
-    />
+    >
+      <ExampleTrigger />
+    </Dropdown>
     <Dropdown
       align="end"
       groups={[
@@ -171,7 +171,9 @@ export const Alignments = () => (
           ],
         },
       ]}
-    />
+    >
+      <ExampleTrigger />
+    </Dropdown>
   </div>
 );
 
@@ -188,7 +190,9 @@ export const Placements = () => (
           ],
         },
       ]}
-    />
+    >
+      <ExampleTrigger />
+    </Dropdown>
     <Dropdown
       side="right"
       groups={[
@@ -199,7 +203,9 @@ export const Placements = () => (
           ],
         },
       ]}
-    />
+    >
+      <ExampleTrigger />
+    </Dropdown>
     <Dropdown
       side="top"
       groups={[
@@ -210,7 +216,9 @@ export const Placements = () => (
           ],
         },
       ]}
-    />
+    >
+      <ExampleTrigger />
+    </Dropdown>
     <Dropdown
       side="left"
       groups={[
@@ -221,7 +229,9 @@ export const Placements = () => (
           ],
         },
       ]}
-    />
+    >
+      <ExampleTrigger />
+    </Dropdown>
   </div>
 );
 
@@ -242,6 +252,8 @@ export const Interactive = () => {
           ],
         },
       ]}
-    />
+    >
+      <ExampleTrigger />
+    </Dropdown>
   );
 }; 
