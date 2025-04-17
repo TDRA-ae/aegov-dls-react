@@ -32,7 +32,7 @@ const positionStyles = {
 
 // Helper function to get base classes
 const getBaseClasses = (variant, position, className) => twMerge(
-  'relative px-4 py-3',
+  'relative px-4 py-3 flex',
   variantStyles[variant],
   positionStyles[position],
   variant === 'notice' && 'flex flex-col md:flex-row justify-between gap-4',

@@ -45,6 +45,13 @@ export const Pills = {
   }
 }
 
+
+export const Arabic = {
+  args: {
+    dir: 'rtl'
+  }
+}
+
 export const WithIcons = {
   args: {
     items: [
