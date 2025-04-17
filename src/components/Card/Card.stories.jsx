@@ -184,6 +184,27 @@ export const StackedCards = () => (
   </div>
 );
 
+
+// Stacked Cards
+export const ArabicHorizontalStack = () => (
+  <div className="space-y-8" dir="rtl">
+    <div className="space-y-2">
+      <h3 className="text-lg font-semibold">Horizontal Stack (Collapsed)</h3>
+      <Card.Stack direction="horizontal" collapsed>
+        {[1, 2, 3].map((i) => (
+          <Card key={i} className="bg-white" bordered>
+            <Note className="text-primary-500 w-10 h-10" />
+            <h5 className="text-h5 font-extrabold">Card {i}</h5>
+            <p>A card in a collapsed stack.</p>
+            <Card.Link href="#">View details</Card.Link>
+          </Card>
+        ))}
+      </Card.Stack>
+    </div>
+  </div>
+);
+
+
 // Cards with Gap
 export const CardsWithGap = () => (
   <Card.Stack direction="horizontal" gap={4}>

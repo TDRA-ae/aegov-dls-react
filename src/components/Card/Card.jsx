@@ -147,11 +147,11 @@ const Stack = React.forwardRef((props, ref) => {
         return React.cloneElement(child, {
           className: twMerge(
             child.props.className,
-            collapsed && '-ml-[1px] -mt-[1px]',
+            collapsed && '-ml-[1px] -mt-[1px] rtl:-mr-[1px] rtl:-mb-[1px]',
             collapsed && 'rounded-none',
             collapsed && direction === 'horizontal' && [
-              isFirst && 'rounded-l-xl ml-0',
-              isLast && 'rounded-r-xl'
+              isFirst && 'rounded-l-xl ml-0 rtl:rounded-r-xl rtl:rounded-l-none',
+              isLast && 'rounded-r-xl rtl:rounded-l-xl rtl:rounded-r-none'
             ],
             collapsed && direction === 'vertical' && [
               isFirst && 'rounded-t-xl mt-0',
