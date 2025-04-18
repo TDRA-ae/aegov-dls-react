@@ -1,7 +1,7 @@
 {
-  "name": "design-system-react",
+  "name": "@aegov/design-system-react",
   "version": "1.0.0",
-  "description": "React Component Library",
+  "description": "A design system for the Government of the United Arab Emirates. Extending the original design system released as @aegov/design-system, this is the package specefically created for the ReactJs enviornment.",
   "main": "dist/index.js",
   "style": "dist/styles/tailwind.css",
   "scripts": {
@@ -16,13 +16,46 @@
     "prepare": "npm run build"
   },
   "keywords": [
+    "design-system",
+    "design system",
+    "designsystem",
+    "dls",
+    "design language",
     "react",
+    "react components",
     "component-library",
     "radix",
-    "tailwind"
+    "tailwind",
+    "components",
+    "component library",
+    "tailwind components",
+    "uae",
+    "united arab emirates",
+    "tdra",
+    "uae gov"
   ],
-  "author": "",
-  "license": "ISC",
+  "author": "Telecommunication and Digital Government Regulatory Authority",
+  "contributors": [
+    "Conceptualize (https://www.conceptualize.ae)"
+  ],
+  "license": "MIT",
+  "homepage": "https://www.tdra.ae/",
+  "bugs": {
+    "url": "https://github.com/TDRA-ae/aegov-dls-react/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TDRA-ae/aegov-dls-react.git"
+  },
+  "browserslist": [
+    "> 7%"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "branches": [
+      "master"
+    ]
+  },
   "peerDependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
