@@ -1,0 +1,10 @@
+node_modules
+/js
+/src/*
+yarn.lock
+/package-lock.json
+!/dist/
+.idea
+.DS_Store
+webpack.config.js
+tsconfig.json
