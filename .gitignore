@@ -5,3 +5,6 @@ node_modules/
 /storybook-static
 .DS_Store
 /dist/
+
+package-lock.json
+/.storybook/*
