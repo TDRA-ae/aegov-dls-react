@@ -45,7 +45,7 @@ const DropdownItem = React.forwardRef(({ label, value, icon: Icon, onSelect }, r
 
 DropdownItem.displayName = 'DropdownItem';
 
-const Dropdown = React.forwardRef(({ children, groups, className, align = 'start', side = 'bottom', onSelect, header, ...rest }, ref) => {
+const Dropdown = React.forwardRef(({ children, groups, className, align = 'start', side = 'bottom', onSelect, header, content, ...rest }, ref) => {
   DropdownSchema.parse({ groups, className, align, side, onSelect, header });
 
   return (
@@ -65,28 +65,34 @@ const Dropdown = React.forwardRef(({ children, groups, className, align = 'start
           )}
           {...rest}
         >
-          {header && (
+          {content ? (
+            content
+          ) : (
             <>
-              <div className="px-4 py-3 border-b border-gray-100 mb-1">{header}</div>
+              {header && (
+                <>
+                  <div className="px-4 py-3 border-b border-gray-100 mb-1">{header}</div>
+                </>
+              )}
+              {groups.map((group, groupIndex) => (
+                <Group key={groupIndex}>
+                  {group.label && (
+                    <Label className="px-3 py-2 text-xs font-medium text-gray-500 rtl:text-right">
+                      {group.label}
+                    </Label>
+                  )}
+                  {group.items.map((item, itemIndex) => (
+                    <React.Fragment key={item.value}>
+                      <DropdownItem {...item} onSelect={() => onSelect?.(item.value)} />
+                    </React.Fragment>
+                  ))}
+                  {groupIndex < groups.length - 1 && (
+                    <Separator className="my-1 h-px bg-gray-100" />
+                  )}
+                </Group>
+              ))}
             </>
           )}
-          {groups.map((group, groupIndex) => (
-            <Group key={groupIndex}>
-              {group.label && (
-                <Label className="px-3 py-2 text-xs font-medium text-gray-500 rtl:text-right">
-                  {group.label}
-                </Label>
-              )}
-              {group.items.map((item, itemIndex) => (
-                <React.Fragment key={item.value}>
-                  <DropdownItem {...item} onSelect={() => onSelect?.(item.value)} />
-                </React.Fragment>
-              ))}
-              {groupIndex < groups.length - 1 && (
-                <Separator className="my-1 h-px bg-gray-100" />
-              )}
-            </Group>
-          ))}
         </Content>
       </Portal>
     </Root>

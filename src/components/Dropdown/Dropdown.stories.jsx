@@ -14,6 +14,7 @@ import {
   Package,
   Heart
 } from '@phosphor-icons/react';
+import Checkbox from '../Checkbox/Checkbox';
 
 export default {
   title: 'Components/Dropdown',
@@ -317,4 +318,56 @@ export const WithHeaderDividerAndIcons = () => (
       <CaretDown className="h-5 w-5 ml-2" weight="bold" />
     </Button>
   </Dropdown>
-); 
+);
+
+// Dropdown with embedded checkboxes (form component)
+export const WithCheckboxes = () => {
+  const [checked, setChecked] = React.useState({
+    comments: false,
+    alerts: false,
+    updates: false,
+  });
+
+  const handleChange = (name) => (value) => {
+    setChecked((prev) => ({ ...prev, [name]: value }));
+  };
+
+  return (
+    <Dropdown
+      groups={[]}
+      content={
+        <div className="p-4 min-w-[320px] flex flex-col gap-4">
+          <Checkbox
+            checked={checked.comments}
+            onCheckedChange={handleChange('comments')}
+            label="Comments"
+            description="Get notified when someones posts a comment on a posting."
+            size="lg"
+            variant="primary"
+          />
+          <Checkbox
+            checked={checked.alerts}
+            onCheckedChange={handleChange('alerts')}
+            label="Alerts"
+            description="Get notified when there is a critical issue."
+            size="lg"
+            variant="primary"
+          />
+          <Checkbox
+            checked={checked.updates}
+            onCheckedChange={handleChange('updates')}
+            label="Updates"
+            description="Get notified when there is a new feature released."
+            size="lg"
+            variant="primary"
+          />
+        </div>
+      }
+    >
+      <Button variant="solid" styleType="primary">
+        <span>Open dropdown</span>
+        <CaretDown className="h-5 w-5 ml-2" weight="bold" />
+      </Button>
+    </Dropdown>
+  );
+}; 
