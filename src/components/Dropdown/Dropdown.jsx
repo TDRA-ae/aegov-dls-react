@@ -21,6 +21,7 @@ const DropdownSchema = z.object({
   align: z.enum(['start', 'center', 'end']).optional(),
   side: z.enum(['top', 'right', 'bottom', 'left']).optional(),
   onSelect: z.function().optional(),
+  header: z.any().optional(),
 });
 
 const DropdownItem = React.forwardRef(({ label, value, icon: Icon, onSelect }, ref) => (
@@ -28,7 +29,7 @@ const DropdownItem = React.forwardRef(({ label, value, icon: Icon, onSelect }, r
     ref={ref}
     value={value}
     className={`
-      relative flex items-center gap-3 px-3 py-2 text-sm text-gray-700 outline-none transition-colors 
+      relative flex items-center gap-3 px-3 py-3 text-sm text-gray-700 outline-none transition-colors 
       hover:bg-gray-50 hover:text-gray-900 focus:bg-gray-50 focus:text-gray-900 
       disabled:pointer-events-none disabled:opacity-50
     `}
@@ -44,8 +45,8 @@ const DropdownItem = React.forwardRef(({ label, value, icon: Icon, onSelect }, r
 
 DropdownItem.displayName = 'DropdownItem';
 
-const Dropdown = React.forwardRef(({ children, groups, className, align = 'start', side = 'bottom', onSelect, ...rest }, ref) => {
-  DropdownSchema.parse({ groups, className, align, side, onSelect });
+const Dropdown = React.forwardRef(({ children, groups, className, align = 'start', side = 'bottom', onSelect, header, ...rest }, ref) => {
+  DropdownSchema.parse({ groups, className, align, side, onSelect, header });
 
   return (
     <Root>
@@ -64,6 +65,11 @@ const Dropdown = React.forwardRef(({ children, groups, className, align = 'start
           )}
           {...rest}
         >
+          {header && (
+            <>
+              <div className="px-4 py-3 border-b border-gray-100 mb-1">{header}</div>
+            </>
+          )}
           {groups.map((group, groupIndex) => (
             <Group key={groupIndex}>
               {group.label && (
@@ -74,9 +80,6 @@ const Dropdown = React.forwardRef(({ children, groups, className, align = 'start
               {group.items.map((item, itemIndex) => (
                 <React.Fragment key={item.value}>
                   <DropdownItem {...item} onSelect={() => onSelect?.(item.value)} />
-                  {itemIndex < group.items.length - 1 && (
-                    <Separator className="my-1 h-px bg-gray-100" />
-                  )}
                 </React.Fragment>
               ))}
               {groupIndex < groups.length - 1 && (

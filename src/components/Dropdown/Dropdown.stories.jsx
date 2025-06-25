@@ -284,4 +284,37 @@ export const Interactive = () => {
       <ExampleTrigger />
     </Dropdown>
   );
-}; 
+};
+
+// Dropdown with header, divider, and icons
+export const WithHeaderDividerAndIcons = () => (
+  <Dropdown
+    header={
+      <div>
+        <div className="text-sm text-gray-700">Signed in as</div>
+        <div className="font-bold text-lg text-gray-900">john@example.com</div>
+      </div>
+    }
+    groups={[
+      {
+        items: [
+          { label: 'A menu item', value: 'item-1', icon: Bell },
+          { label: 'A menu item', value: 'item-2', icon: User },
+          { label: 'A menu item', value: 'item-3', icon: Globe },
+        ],
+      },
+      {
+        items: [
+          { label: 'A menu item', value: 'item-4', icon: Gear },
+          { label: 'A menu item', value: 'item-5', icon: ShoppingCart },
+          { label: 'A menu item', value: 'item-6', icon: Package },
+        ],
+      },
+    ]}
+  >
+    <Button variant="solid" styleType="primary">
+      <span>Open dropdown</span>
+      <CaretDown className="h-5 w-5 ml-2" weight="bold" />
+    </Button>
+  </Dropdown>
+); 
