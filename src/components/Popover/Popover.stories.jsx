@@ -99,4 +99,32 @@ export const Positions = () => (
       </PopoverRoot>
     ))}
   </div>
+);
+
+export const HoverTrigger = () => (
+  <div className="flex gap-4">
+    <PopoverRoot trigger="hover">
+      <PopoverTrigger asChild>
+        <button className="inline-flex items-center justify-center rounded-md bg-primary-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-primary-500 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2">
+          <List className="mr-2 h-4 w-4" />
+          Hover Me
+        </button>
+      </PopoverTrigger>
+      <PopoverContent>
+        <div className="flex flex-col gap-4">
+          <h4 className="text-lg font-semibold text-gray-900">Hover Popover</h4>
+          <p className="text-sm text-gray-500">
+            This popover appears when you hover over the trigger button. It will disappear when you move your mouse away.
+          </p>
+          <div className="flex justify-end">
+            <button className="rounded-md bg-primary-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600"
+              onClick={() => alert('Action clicked')}
+            >
+              Action
+            </button>
+          </div>
+        </div>
+      </PopoverContent>
+    </PopoverRoot>
+  </div>
 ); 

@@ -1,7 +1,14 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Root, Trigger, Portal, Content, Arrow, Close } from '@radix-ui/react-popover';
 import { X } from '@phosphor-icons/react';
 import { z } from 'zod';
+
+const PopoverRootSchema = z.object({
+  children: z.any(),
+  trigger: z.enum(['click', 'hover']).optional().default('click'),
+  open: z.boolean().optional(),
+  onOpenChange: z.function().optional(),
+});
 
 const PopoverContentSchema = z.object({
   children: z.any(),
@@ -9,21 +16,97 @@ const PopoverContentSchema = z.object({
   sideOffset: z.number().optional().default(5),
   align: z.enum(['start', 'center', 'end']).optional().default('center'),
   side: z.enum(['top', 'right', 'bottom', 'left']).optional().default('bottom'),
+  onMouseEnter: z.function().optional(),
+  onMouseLeave: z.function().optional(),
 });
 
 const PopoverTriggerSchema = z.object({
   children: z.any(),
   asChild: z.boolean().optional().default(false),
+  onMouseEnter: z.function().optional(),
+  onMouseLeave: z.function().optional(),
 });
 
+const PopoverRoot = React.forwardRef((props, ref) => {
+  const { children, trigger = 'click', open, onOpenChange } = PopoverRootSchema.parse(props);
+  const [isOpen, setIsOpen] = useState(false);
+  const timeoutRef = useRef(null);
+  
+  const handleOpenChange = (newOpen) => {
+    if (onOpenChange) {
+      onOpenChange(newOpen);
+    } else {
+      setIsOpen(newOpen);
+    }
+  };
+
+  const controlledOpen = open !== undefined ? open : isOpen;
+
+  const handleMouseEnter = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    handleOpenChange(true);
+  };
+
+  const handleMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      handleOpenChange(false);
+    }, 150); // Delay to allow moving between trigger and content
+  };
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
+
+  if (trigger === 'hover') {
+    return (
+      <Root open={controlledOpen} onOpenChange={handleOpenChange}>
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            if (child.type === PopoverTrigger) {
+              return React.cloneElement(child, {
+                onMouseEnter: handleMouseEnter,
+                onMouseLeave: handleMouseLeave,
+              });
+            }
+            if (child.type === PopoverContent) {
+              return React.cloneElement(child, {
+                onMouseEnter: handleMouseEnter,
+                onMouseLeave: handleMouseLeave,
+              });
+            }
+          }
+          return child;
+        })}
+      </Root>
+    );
+  }
+
+  return (
+    <Root open={controlledOpen} onOpenChange={handleOpenChange}>
+      {children}
+    </Root>
+  );
+});
+
+PopoverRoot.displayName = 'PopoverRoot';
+
 const PopoverTrigger = React.forwardRef((props, ref) => {
-  const { children, asChild = false } = PopoverTriggerSchema.parse(props);
+  const { children, asChild = false, onMouseEnter, onMouseLeave } = PopoverTriggerSchema.parse(props);
   
   return (
     <Trigger
       ref={ref}
       asChild={asChild}
       className={!asChild ? 'inline-flex items-center justify-center' : undefined}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
     >
       {children}
     </Trigger>
@@ -39,6 +122,8 @@ const PopoverContent = React.forwardRef((props, ref) => {
     sideOffset = 5,
     align = 'center',
     side = 'bottom',
+    onMouseEnter,
+    onMouseLeave,
   } = PopoverContentSchema.parse(props);
 
   return (
@@ -48,6 +133,8 @@ const PopoverContent = React.forwardRef((props, ref) => {
         sideOffset={sideOffset}
         align={align}
         side={side}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         className={`
           z-50 w-72 rounded-lg bg-white p-4 shadow-lg
           animate-in data-[side=bottom]:slide-in-from-top-2
@@ -70,7 +157,7 @@ const PopoverContent = React.forwardRef((props, ref) => {
 PopoverContent.displayName = 'PopoverContent';
 
 export {
-  Root as PopoverRoot,
+  PopoverRoot,
   PopoverTrigger,
   PopoverContent,
 }; 
