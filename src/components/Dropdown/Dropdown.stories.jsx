@@ -370,4 +370,24 @@ export const WithCheckboxes = () => {
       </Button>
     </Dropdown>
   );
-}; 
+};
+
+// Dropdown with hover trigger
+export const TriggerOnHover = () => (
+  <Dropdown
+    trigger="hover"
+    groups={[
+      {
+        items: [
+          { label: 'Hover me', value: 'hover-1' },
+          { label: 'Or me', value: 'hover-2' },
+        ],
+      },
+    ]}
+  >
+    <Button variant="solid" styleType="primary">
+      <span>Open on hover</span>
+      <CaretDown className="h-5 w-5 ml-2" weight="bold" />
+    </Button>
+  </Dropdown>
+); 

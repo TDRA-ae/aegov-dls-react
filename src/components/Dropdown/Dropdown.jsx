@@ -45,13 +45,52 @@ const DropdownItem = React.forwardRef(({ label, value, icon: Icon, onSelect }, r
 
 DropdownItem.displayName = 'DropdownItem';
 
-const Dropdown = React.forwardRef(({ children, groups, className, align = 'start', side = 'bottom', onSelect, header, content, ...rest }, ref) => {
+const Dropdown = React.forwardRef(({
+  children,
+  groups,
+  className,
+  align = 'start',
+  side = 'bottom',
+  onSelect,
+  header,
+  content,
+  trigger = 'click',
+  ...rest
+}, ref) => {
   DropdownSchema.parse({ groups, className, align, side, onSelect, header });
 
+  const [open, setOpen] = React.useState(false);
+
+  const isHover = trigger.includes('hover');
+  const isClick = trigger.includes('click');
+
+  const triggerProps = {};
+  if (isHover) {
+    triggerProps.onMouseEnter = () => setOpen(true);
+    triggerProps.onMouseLeave = (e) => {
+      if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
+        setOpen(false);
+      }
+    };
+  }
+  if (isClick) {
+    triggerProps.onClick = () => setOpen((prev) => !prev);
+  }
+
+  const contentProps = {};
+  if (isHover) {
+    contentProps.onMouseEnter = () => setOpen(true);
+    contentProps.onMouseLeave = (e) => {
+      if (!e.relatedTarget || !e.currentTarget.contains(e.relatedTarget)) {
+        setOpen(false);
+      }
+    };
+  }
+
   return (
-    <Root>
+    <Root open={isHover ? open : undefined} onOpenChange={isHover ? setOpen : undefined}>
       <Trigger asChild>
-        <div>{children}</div>
+        <div {...triggerProps}>{children}</div>
       </Trigger>
 
       <Portal>
@@ -64,6 +103,7 @@ const Dropdown = React.forwardRef(({ children, groups, className, align = 'start
             className
           )}
           {...rest}
+          {...contentProps}
         >
           {content ? (
             content
