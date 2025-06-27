@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Toggle from './Toggle';
+import { Check, X } from '@phosphor-icons/react';
 
 export default {
   title: 'Components/Toggle',
@@ -128,4 +129,24 @@ export const AllVariants = () => {
       </div>
     </div>
   );
+};
+
+// Custom icon toggle
+export const WithCustomIcons = {
+  render: (args) => {
+    const [checked, setChecked] = React.useState(args.checked || false);
+    return (
+      <Toggle
+        {...args}
+        checked={checked}
+        onCheckedChange={setChecked}
+        checkedIcon={<Check className="mt-[1px] ml-[1px] h-4 w-4 text-gray-500" />}
+        uncheckedIcon={<X className="mt-[1px] ml-[1px] h-4 w-4 text-gray-500" />}
+        label="I agree with the terms and conditions"
+      />
+    );
+  },
+  args: {
+    checked: false,
+  },
 }; 

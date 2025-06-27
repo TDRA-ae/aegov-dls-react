@@ -11,6 +11,8 @@ const ToggleSchema = z.object({
   variant: z.enum(['default', 'success', 'mode', 'secondary']).optional(),
   label: z.string().optional(),
   className: z.string().optional(),
+  checkedIcon: z.any().optional(),
+  uncheckedIcon: z.any().optional(),
 });
 
 const Toggle = React.forwardRef((props, ref) => {
@@ -21,6 +23,8 @@ const Toggle = React.forwardRef((props, ref) => {
     variant = 'default',
     label,
     className,
+    checkedIcon,
+    uncheckedIcon,
     ...rest
   } = ToggleSchema.parse(props);
 
@@ -68,7 +72,9 @@ const Toggle = React.forwardRef((props, ref) => {
             variants[variant].thumb
           )}
         >
-          {variant === 'mode' && (
+          {checkedIcon || uncheckedIcon ? (
+            checked ? checkedIcon : uncheckedIcon
+          ) : variant === 'mode' ? (
             <>
               {checked ? (
                 <Moon weight="fill" className="h-4 w-4 text-whitely-50" />
@@ -76,7 +82,7 @@ const Toggle = React.forwardRef((props, ref) => {
                 <Sun weight="fill" className="h-4 w-4 text-aeblack-950" />
               )}
             </>
-          )}
+          ) : null}
         </Thumb>
       </Root>
       {label && (
