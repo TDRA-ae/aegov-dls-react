@@ -192,4 +192,53 @@ export const LongList = {
       { value: 'jp', label: 'Japan' },
     ],
   },
-}; 
+};
+
+// HTML Multi-Select Example (Native Example)
+// To acheive multi-select functionality, we can use a native HTML <select multiple> element. 
+export const HtmlMultiSelect = () => {
+  const [selected, setSelected] = React.useState([]);
+  const options = [
+    'United Arab Emirates',
+    'India',
+    'United Kingdom',
+    'USA',
+  ];
+
+  const handleChange = (e) => {
+    const selectedOptions = Array.from(e.target.selectedOptions, option => option.value);
+    setSelected(selectedOptions);
+  };
+
+  return (
+    <div className="max-w-md">
+      <label
+        htmlFor="country_multiple"
+        className="font-semibold mb-2 block"
+      >
+        Select options
+      </label>
+      <select
+        multiple
+        id="country_multiple"
+        name="country_multiple"
+        className="w-full min-h-[120px] border-2 border-[#c9a227] rounded-lg p-2 text-[#6b4226] text-[15px] focus:outline-none focus:ring-2 focus:ring-[#c9a227]"
+        value={selected}
+        onChange={handleChange}
+      >
+        {options.map(option => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+      <div className="mt-3 text-base">
+        <strong>Selected:</strong> {selected.length ? selected.join(', ') : 'None'}
+      </div>
+      <p className="mt-2 text-gray-500 text-xs">
+        This is a native HTML <code>&lt;select multiple&gt;</code> element for multi-select functionality.
+      </p>
+    </div>
+  );
+};
+HtmlMultiSelect.storyName = 'HTML Multi-Select (Native Example)'; 
