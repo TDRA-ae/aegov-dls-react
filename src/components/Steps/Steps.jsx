@@ -11,10 +11,11 @@ const stepsSchema = z.object({
   currentStep: z.number(),
   size: z.enum(['sm', 'base', 'lg']).optional(),
   orientation: z.enum(['horizontal', 'vertical']).optional(),
-  showLabels: z.boolean().optional()
+  showLabels: z.boolean().optional(),
+  disabled: z.boolean().optional(),
 })
 
-const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSteps }) => {
+const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSteps, disabled }) => {
   const isCompleted = index < currentStep
   const isCurrent = index === currentStep
   const isUpcoming = index > currentStep
@@ -34,6 +35,10 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
     },
   }
 
+  // Only upcoming steps are lighter and non-interactive if disabled
+  const isStepDisabled = disabled && isUpcoming
+  const stepOpacity = isStepDisabled ? 'opacity-20 pointer-events-none' : ''
+
   return (
     <li
       key={step.label}
@@ -48,6 +53,7 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
           className={cn(
             'absolute bg-gray-300 transition-colors duration-200',
             isCompleted && 'bg-primary-500',
+            isStepDisabled && 'opacity-20',
             isVertical 
               ? 'left-[calc(50%-1px)] top-12 h-12 w-[3px]' 
               : cn(sizeClasses.line.hr[size], 'translate-x-1/2 rtl:-translate-x-full')
@@ -68,9 +74,12 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
             sizeClasses.link[size],
             isCompleted && 'bg-primary-500 text-white hover:ring-4 hover:ring-primary-100',
             isCurrent && 'bg-primary-500 text-white ring-4 ring-primary-100',
-            isUpcoming && 'bg-white border-2 border-gray-200 text-gray-500 hover:border-primary-500 hover:text-primary-500'
+            isUpcoming && 'bg-white border-2 border-gray-200 text-gray-500 hover:border-primary-500 hover:text-primary-500',
+            stepOpacity
           )}
           aria-current={isCurrent ? 'step' : undefined}
+          aria-disabled={isStepDisabled ? 'true' : undefined}
+          tabIndex={isStepDisabled ? -1 : undefined}
         >
           {isCompleted ? (
             <Check weight="bold" className="w-5 h-5" />
@@ -87,7 +96,8 @@ const Step = ({ step, index, currentStep, size, isVertical, showLabels, totalSte
               'absolute text-sm font-medium text-gray-900',
               isVertical
                 ? 'left-14 rtl:left-0 rtl:right-14 top-2.5'
-                : 'left-1/2 -translate-x-1/2 mt-14'
+                : 'left-1/2 -translate-x-1/2 mt-14',
+              isStepDisabled && 'opacity-20'
             )}
           >
             {step.label}
@@ -104,10 +114,11 @@ const Steps = ({
   size = 'base',
   orientation = 'horizontal',
   showLabels = false,
-  className
+  className,
+  disabled = false
 }) => {
   // Validate props
-  stepsSchema.parse({ steps, currentStep, size, orientation, showLabels })
+  stepsSchema.parse({ steps, currentStep, size, orientation, showLabels, disabled })
 
   const isVertical = orientation === 'vertical'
 
@@ -137,6 +148,7 @@ const Steps = ({
             isVertical={isVertical}
             showLabels={showLabels}
             totalSteps={steps.length}
+            disabled={disabled}
           />
         ))}
       </ol>

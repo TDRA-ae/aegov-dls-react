@@ -94,3 +94,12 @@ export const Completed = {
     currentStep: 4,
   },
 }
+
+export const Disabled = {
+  args: {
+    steps: defaultSteps,
+    currentStep: 2,
+    disabled: true,
+    showLabels: true,
+  },
+}
