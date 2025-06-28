@@ -87,4 +87,38 @@ export const Alert = () => {
       </div>
     </Modal>
   )
+}
+
+export const BottomRight = () => {
+  return (
+    <Modal
+      title="Deactivate account"
+      trigger={<Button variant="solid">Open Bottom Right Modal</Button>}
+      className="left-auto right-6 top-auto bottom-6 translate-x-0 translate-y-0"
+      size="xl"
+    >
+      <div className="flex items-start">
+        <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-yellow-100">
+          <Check className="h-8 w-8 text-yellow-700" />
+        </div>
+        <div className="ml-4">
+          <h3 className="text-lg font-semibold text-yellow-900">Deactivate account</h3>
+          <p className="mt-2 text-yellow-800">
+            Are you sure you want to deactivate your account? Our site enables scripts (e.g. cookies) that are able to read, store, and write information on your browser and device. The information processed by this script includes data relating to you, which may include personal identifiers.
+          </p>
+          <p className="mt-4 text-yellow-800">
+            We use this information for various purposes - e.g. to deliver content, maintain security, enable user choice, improve our sites, and for marketing purposes. You may choose to accept or deny using our website accordingly. Learn more by visiting our Privacy Policy.
+          </p>
+        </div>
+      </div>
+      <div className="mt-8 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+        <Close asChild>
+          <Button variant="outline">Deny and quit</Button>
+        </Close>
+        <Close asChild>
+          <Button variant="solid">Allow all and accept</Button>
+        </Close>
+      </div>
+    </Modal>
+  )
 } 

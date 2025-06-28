@@ -27,7 +27,8 @@ const Modal = ({
   const sizeClasses = {
     sm: 'sm:max-w-sm',
     md: 'sm:max-w-lg',
-    lg: 'sm:max-w-xl'
+    lg: 'sm:max-w-xl',
+    xl: 'sm:max-w-3xl'
   }
 
   return (
