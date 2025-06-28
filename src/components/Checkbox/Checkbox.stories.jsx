@@ -146,4 +146,42 @@ export const AllStates = () => {
       />
     </div>
   );
+};
+
+// Checkbox as a list (like a filter block)
+export const AsList = () => {
+  const people = [
+    'Abdullah Al Mehri',
+    'Maryam Al Kamali',
+    'Shehzad Obaid',
+    'Ramakrishnan Iyer',
+  ];
+  const [checked, setChecked] = useState(Array(people.length).fill(false));
+
+  const handleChange = idx => value => {
+    setChecked(prev => {
+      const next = [...prev];
+      next[idx] = value;
+      return next;
+    });
+  };
+
+  return (
+    <div className="bg-white rounded-xl border border-gray-200 p-6 max-w-xl">
+      <ul className="divide-y divide-gray-200 w-[400px]">
+        {people.map((name, idx) => (
+          <li key={name} className="flex items-center justify-between py-4">
+            <label className="font-semibold text-gray-800 flex justify-between w-full">
+              {name}
+              <Checkbox
+                checked={checked[idx]}
+                onCheckedChange={handleChange(idx)}
+                aria-label={`Select ${name}`}
+              />
+            </label>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }; 
