@@ -1,5 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
+import Button from '../Button/Button';
 
 export default {
   title: 'Components/Banner',
@@ -72,17 +73,70 @@ export const Red = {
   },
 };
 
-// Notice Banner
-export const Notice = {
+// Primary Notice Banner with Accept and Deny actions
+export const PrimaryNoticeWithActions = {
   args: {
     title: 'We use cookies to personalise this website',
-    children: 'Our site enables script (e.g. cookies) that is able to read, store, and write information on your browser and in your device. By using our website, you\'re agreeing to the collection of data as described in our Privacy Policy.',
-    action: {
-      text: 'Accept',
-      onClick: () => alert('Accepted')
-    },
+    children: "Our site enables script (e.g. cookies) that is able to read, store, and write information on your browser and in your device. By using our website, you're agreeing to the collection of data as described in our Privacy Policy.",
+    action: (
+      <div className="flex gap-8 items-center justify-center">
+        <Button
+          style="primary"
+          variant="solid"
+          size="lg"
+          className="min-w-[140px]"
+          onClick={() => alert('Accepted')}
+        >
+          Accept
+        </Button>
+        <Button
+          style="primary"
+          variant="link"
+          size="lg"
+          className="text-primary-500"
+          onClick={() => alert('Denied')}
+        >
+          Deny
+        </Button>
+      </div>
+    ),
     position: 'bottom',
-    variant: 'notice',
+    variant: 'primaryNotice',
+    centered: false,
+  },
+};
+
+
+// Secondary Notice Banner with Accept and Deny actions
+export const NoticeWithActions = {
+  args: {
+    title: 'We use cookies to personalise this website',
+    children: "Our site enables script (e.g. cookies) that is able to read, store, and write information on your browser and in your device. By using our website, you're agreeing to the collection of data as described in our Privacy Policy.",
+    action: (
+      <div className="flex gap-8 items-center justify-center">
+        <Button
+          style="secondary"
+          variant="solid"
+          size="lg"
+          className="min-w-[140px]"
+          onClick={() => alert('Accepted')}
+        >
+          Accept
+        </Button>
+        <Button
+          style="secondary"
+          variant="link"
+          size="lg"
+          className="text-secondary-500"
+          onClick={() => alert('Denied')}
+        >
+          Deny
+        </Button>
+      </div>
+    ),
+    position: 'bottom',
+    variant: 'secondaryNotice',
+    centered: false,
   },
 };
 
