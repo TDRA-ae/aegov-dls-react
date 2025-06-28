@@ -1,6 +1,7 @@
 import React from 'react';
 import Input from './Input';
 import { EnvelopeSimple, User, Phone } from '@phosphor-icons/react';
+import Dropdown from '../Dropdown/Dropdown';
 
 export default {
   title: 'Components/Input',
@@ -166,4 +167,34 @@ export const Disabled = {
     disabled: true,
     id: 'disabled',
   },
+};
+
+// Input with Dropdown Prefix
+export const WithDropdownPrefix = () => {
+  const [countryCode, setCountryCode] = React.useState('+971');
+  const countryOptions = [
+    { label: '+971', value: '+971' },
+    { label: '+91', value: '+91' },
+    { label: '+44', value: '+44' },
+  ];
+
+  return (
+    <Input
+      label="Mobile number"
+      placeholder="xx xxxxxxxx"
+      type="tel"
+      id="mobile-dropdown"
+      prefix={
+        <Dropdown
+          groups={[{ items: countryOptions }]}
+          onSelect={setCountryCode}
+        >
+          <div className="flex items-center gap-2 cursor-pointer select-none min-w-[60px]">
+            <span className="text-brown-700 font-medium">{countryCode}</span>
+            <svg width="20" height="20" fill="none" viewBox="0 0 20 20"><path d="M5 8l5 5 5-5" stroke="#A47A1F" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+          </div>
+        </Dropdown>
+      }
+    />
+  );
 }; 
