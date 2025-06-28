@@ -217,4 +217,29 @@ export const CardsWithGap = () => (
       </Card>
     ))}
   </Card.Stack>
-); 
+);
+
+// Card with Image on Left
+export const ImageOnLeft = {
+  args: {
+    bordered: true,
+    className: 'p-0',
+    children: (
+      <div className="flex flex-col md:flex-row items-stretch gap-0">
+        <div className="flex-shrink-0 w-full md:w-1/3">
+          <img
+            src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80"
+            alt="Plant growing on keyboard"
+            className="object-cover w-full h-40 md:h-full rounded-t-xl md:rounded-l-xl md:rounded-tr-none"
+          />
+        </div>
+        <div className="flex flex-col justify-center p-6 md:p-8 w-full">
+          <span className="text-sm font-semibold text-gray-500 mb-2">What's new</span>
+          <h3 className="text-h4 font-extrabold mb-3">Sustainable by design</h3>
+          <p className="text-base text-gray-700 mb-6">Sustainable web design is the practice of designing and developing websites that have a low environmental impact.</p>
+          <Card.Link href="#" className="text-primary-700 font-semibold">Read More</Card.Link>
+        </div>
+      </div>
+    ),
+  },
+}; 
