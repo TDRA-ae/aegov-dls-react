@@ -287,3 +287,20 @@ export const AllVariations = () => (
     </div>
   </div>
 ); 
+
+
+// Controlled component example
+export const AsList = () => {
+  const [selectedPerson, setSelectedPerson] = useState('');
+  
+  return (
+    <div className="space-y-4">
+      <Radio value={selectedPerson} onValueChange={setSelectedPerson}>
+        <RadioItem value="controlled1" className="border-b border-gray-200 pb-5 px-2">Abdullah Al Mehri</RadioItem>
+        <RadioItem value="controlled2" className="border-b border-gray-200 pb-5 px-2">Maryam Al Kamali</RadioItem>
+        <RadioItem value="controlled3" className="border-b border-gray-200 pb-5 px-2">Shehzad Obaid</RadioItem>  
+        <RadioItem value="controlled4" className="border-b border-gray-200 pb-5 px-2">Ramakrishnan Iyer</RadioItem>  
+      </Radio>
+    </div>
+  );
+};
