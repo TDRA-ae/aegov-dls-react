@@ -502,4 +502,82 @@ export const WithCustomComponents = () => {
       </SecondaryMenu>
     </Navigation>
   );
+};
+
+// MegaMenu story with custom dropdown
+export const MegaMenu = () => {
+  const { isMobile } = useWindowSize();
+
+  // Custom MegaMenu dropdown component
+  const MegaMenuDropdown = () => (
+    <div
+      className="fixed left-0 right-0 top-[72px] w-full z-50 bg-white/95 shadow-lg"
+      style={{ minHeight: '320px' }}
+    >
+      <div className="container mx-auto px-12 py-10 grid grid-cols-4 gap-12">
+        <div>
+          <h3 className="text-lg font-bold text-yellow-800 mb-6">Cities</h3>
+          <ul className="space-y-8 text-lg">
+            <li>Dubai</li>
+            <li>Abu Dhabi</li>
+            <li>Sharjah</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-lg font-bold text-yellow-800 mb-6">Foods</h3>
+          <ul className="space-y-8 text-lg">
+            <li>Shawarma</li>
+            <li>Falafel</li>
+            <li>Hummus</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-lg font-bold text-yellow-800 mb-6">Landmarks</h3>
+          <ul className="space-y-8 text-lg">
+            <li>Burj Khalifa</li>
+            <li>The Creek</li>
+            <li>Palm Jumeirah</li>
+          </ul>
+        </div>
+        <div>
+          <h3 className="text-lg font-bold text-yellow-800 mb-6">Activities</h3>
+          <ul className="space-y-8 text-lg">
+            <li>Desert Safari</li>
+            <li>Dhow Cruise</li>
+            <li>Ski Dubai</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <Navigation isMobile={isMobile} logo={<Logo />}>
+      <MainMenu>
+        <NavItem icon={House} href="#" isActive>
+          Home
+        </NavItem>
+        <NavItem
+          dropdown={<MegaMenuDropdown />}
+          isActive
+        >
+          Mega Menu
+        </NavItem>
+        <NavItem href="#">
+          About us
+        </NavItem>
+      </MainMenu>
+      <SecondaryMenu>
+        <NavItem type="secondary" icon={User} href="#" tooltipText="Login">
+          Login
+        </NavItem>
+        <NavItem type="secondary" icon={Accessibility} href="#" tooltipText="Accessibility">
+          Accessibility
+        </NavItem>
+        <NavItem type="secondary" icon={Globe} href="#" tooltipText="Switch language">
+          Switch language
+        </NavItem>
+      </SecondaryMenu>
+    </Navigation>
+  );
 }; 
