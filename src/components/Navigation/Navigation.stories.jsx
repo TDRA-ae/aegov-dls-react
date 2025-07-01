@@ -508,7 +508,7 @@ export const WithCustomComponents = () => {
 export const MegaMenu = () => {
   const { isMobile } = useWindowSize();
 
-  // Custom MegaMenu dropdown component
+  // Custom MegaMenu dropdown component for desktop
   const MegaMenuDropdown = () => (
     <div
       className="fixed left-0 right-0 top-[72px] w-full z-50 bg-white/95 shadow-lg"
@@ -551,6 +551,42 @@ export const MegaMenu = () => {
     </div>
   );
 
+  // Mobile-friendly dropdown structure
+  const mobileDropdown = [
+    {
+      title: 'Cities',
+      items: [
+        { label: 'Dubai', href: '#' },
+        { label: 'Abu Dhabi', href: '#' },
+        { label: 'Sharjah', href: '#' },
+      ],
+    },
+    {
+      title: 'Foods',
+      items: [
+        { label: 'Shawarma', href: '#' },
+        { label: 'Falafel', href: '#' },
+        { label: 'Hummus', href: '#' },
+      ],
+    },
+    {
+      title: 'Landmarks',
+      items: [
+        { label: 'Burj Khalifa', href: '#' },
+        { label: 'The Creek', href: '#' },
+        { label: 'Palm Jumeirah', href: '#' },
+      ],
+    },
+    {
+      title: 'Activities',
+      items: [
+        { label: 'Desert Safari', href: '#' },
+        { label: 'Dhow Cruise', href: '#' },
+        { label: 'Ski Dubai', href: '#' },
+      ],
+    },
+  ];
+
   return (
     <Navigation isMobile={isMobile} logo={<Logo />}>
       <MainMenu>
@@ -558,7 +594,7 @@ export const MegaMenu = () => {
           Home
         </NavItem>
         <NavItem
-          dropdown={<MegaMenuDropdown />}
+          dropdown={isMobile ? mobileDropdown : <MegaMenuDropdown />}
           isActive
         >
           Mega Menu
