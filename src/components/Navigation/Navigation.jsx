@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { twMerge } from 'tailwind-merge';
 import {
     Root,
@@ -13,6 +13,39 @@ import {
 } from '@radix-ui/react-navigation-menu';
 import Tooltip from '../Tooltip/Tooltip';
 import { CaretDown, List as HamburgerMenu, X } from '@phosphor-icons/react';
+
+// useWindowSize hook for responsive navigation
+const useWindowSize = (mobileBreakpoint = 1024) => {
+  // Initialize with default values or actual window size if on client
+  const [windowSize, setWindowSize] = useState({
+    width: typeof window !== 'undefined' ? window.innerWidth : mobileBreakpoint,
+    height: typeof window !== 'undefined' ? window.innerHeight : 0,
+  });
+
+  // Derived value for mobile detection
+  const isMobile = windowSize.width < mobileBreakpoint;
+
+  useEffect(() => {
+    // Handler to call on window resize
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+
+    // Call handler right away to update initial state
+    handleResize();
+
+    // Remove event listener on cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []); // Empty dependency array means this effect runs once on mount
+
+  return { width: windowSize.width, height: windowSize.height, isMobile };
+};
 
 const dropdownSchema = z.array(z.object({
     title: z.string(),
@@ -433,5 +466,7 @@ Navigation.displayName = 'Navigation';
 Navigation.MainMenu = MainMenu;
 Navigation.SecondaryMenu = SecondaryMenu;
 Navigation.NavItem = NavItem;
+Navigation.useWindowSize = useWindowSize;
 
-export default Navigation; 
+export default Navigation;
+export { useWindowSize }; 

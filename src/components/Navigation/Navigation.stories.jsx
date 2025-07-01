@@ -1,5 +1,5 @@
 import React from 'react';
-import Navigation from './Navigation';
+import Navigation, { useWindowSize } from './Navigation';
 import {
   House,
   User,
@@ -20,40 +20,6 @@ import {
 } from '@phosphor-icons/react';
 
 const { MainMenu, SecondaryMenu, NavItem } = Navigation;
-
-import { useState, useEffect } from 'react';
-
-const useWindowSize = (mobileBreakpoint = 1024) => {
-  // Initialize with default values or actual window size if on client
-  const [windowSize, setWindowSize] = useState({
-    width: typeof window !== 'undefined' ? window.innerWidth : mobileBreakpoint,
-    height: typeof window !== 'undefined' ? window.innerHeight : 0,
-  });
-
-  // Derived value for mobile detection
-  const isMobile = windowSize.width < mobileBreakpoint;
-
-  useEffect(() => {
-    // Handler to call on window resize
-    const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
-    };
-
-    // Add event listener
-    window.addEventListener('resize', handleResize);
-
-    // Call handler right away to update initial state
-    handleResize();
-
-    // Remove event listener on cleanup
-    return () => window.removeEventListener('resize', handleResize);
-  }, []); // Empty dependency array means this effect runs once on mount
-
-  return { width: windowSize.width, height: windowSize.height, isMobile };
-};
 
 const Logo = () => (
   <div className="text-aeblack-900 font-bold text-2xl">LOGO</div>
