@@ -7,7 +7,7 @@ export { default as FileUpload } from './components/FileUpload/FileUpload';
 export { default as Tabs } from './components/Tabs/Tabs';
 export { Select } from './components/Select';
 export { default as Navigation } from './components/Navigation/Navigation';
-export { default as Radio, RadioItem } from './components/Radio/Radio';
+export { Radio, RadioItem } from './components/Radio/Radio';
 export { default as Avatar } from './components/Avatar/Avatar';
 export { default as Blockquote } from './components/Blockquote/Blockquote';
 export { default as Breadcrumbs } from './components/Breadcrumbs/Breadcrumbs';
