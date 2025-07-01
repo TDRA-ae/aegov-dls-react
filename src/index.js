@@ -25,6 +25,6 @@ export {
 export { default as RangeSlider } from './components/RangeSlider/RangeSlider';
 export { default as Steps } from './components/Steps/Steps';
 export { default as Textarea } from './components/Textarea/Textarea';
-export { default as Toast } from './components/Toast/Toast';
+export { Toast } from './components/Toast/Toast';
 export { default as Toggle } from './components/Toggle/Toggle';
 export { default as Tooltip } from './components/Tooltip/Tooltip';
