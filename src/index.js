@@ -17,7 +17,11 @@ export { default as Hyperlink } from './components/Hyperlink/Hyperlink';
 export { default as Input } from './components/Input/Input';
 export { default as Modal } from './components/Modal/Modal';
 export { default as Pagination } from './components/Pagination/Pagination';
-export { default as Popover } from './components/Popover/Popover';
+export { 
+    PopoverRoot,
+    PopoverTrigger,
+    PopoverContent
+} from './components/Popover/Popover';
 export { default as RangeSlider } from './components/RangeSlider/RangeSlider';
 export { default as Steps } from './components/Steps/Steps';
 export { default as Textarea } from './components/Textarea/Textarea';
