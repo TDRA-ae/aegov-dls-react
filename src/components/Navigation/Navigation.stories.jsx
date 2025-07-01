@@ -616,4 +616,86 @@ export const MegaMenu = () => {
       </SecondaryMenu>
     </Navigation>
   );
+};
+
+// Multi-Column Dropdown story
+export const MultiColumnDropdown = () => {
+  const { isMobile } = useWindowSize();
+
+  // Custom multi-column dropdown for desktop
+  const MultiColumnDropdownContent = () => (
+    <div
+    >
+      <div className="px-5 py-2 grid grid-cols-3 gap-8 min-w-[600px]">
+        {[1, 2, 3].map((col) => (
+          <div key={col}>
+            <h4 className="text-base font-bold text-yellow-800 mb-4">Sub Title</h4>
+            <ul className="space-y-4 text-base">
+              <li><a href="#" className="hover:underline">Sub Item</a></li>
+              <li><a href="#" className="hover:underline">Sub Item</a></li>
+              <li><a href="#" className="hover:underline">Sub Item</a></li>
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  // Mobile-friendly dropdown structure
+  const mobileDropdown = [
+    {
+      title: 'Sub Title',
+      items: [
+        { label: 'Sub Item', href: '#' },
+        { label: 'Sub Item', href: '#' },
+        { label: 'Sub Item', href: '#' },
+      ],
+    },
+    {
+      title: 'Sub Title',
+      items: [
+        { label: 'Sub Item', href: '#' },
+        { label: 'Sub Item', href: '#' },
+        { label: 'Sub Item', href: '#' },
+      ],
+    },
+    {
+      title: 'Sub Title',
+      items: [
+        { label: 'Sub Item', href: '#' },
+        { label: 'Sub Item', href: '#' },
+        { label: 'Sub Item', href: '#' },
+      ],
+    },
+  ];
+
+  return (
+    <Navigation isMobile={isMobile} logo={<Logo />}>
+      <MainMenu>
+        <NavItem icon={House} href="#" isActive>
+          Home
+        </NavItem>
+        <NavItem href="#">
+          Our services
+        </NavItem>
+        <NavItem
+          dropdown={isMobile ? mobileDropdown : <MultiColumnDropdownContent />}
+          isActive
+        >
+          About us
+        </NavItem>
+      </MainMenu>
+      <SecondaryMenu>
+        <NavItem type="secondary" icon={User} href="#" tooltipText="Login">
+          Login
+        </NavItem>
+        <NavItem type="secondary" icon={Accessibility} href="#" tooltipText="Accessibility">
+          Accessibility
+        </NavItem>
+        <NavItem type="secondary" icon={Globe} href="#" tooltipText="Switch language">
+          Switch language
+        </NavItem>
+      </SecondaryMenu>
+    </Navigation>
+  );
 }; 

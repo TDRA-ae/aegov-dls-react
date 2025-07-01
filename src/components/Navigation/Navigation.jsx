@@ -139,7 +139,7 @@ const NavItem = React.forwardRef(({
 
                 <Content
                     className={`
-                        mt-2 absolute z-50 w-[300px] rtl:right-0
+                        mt-2 absolute z-50 min-w-[300px] rtl:right-0
                         data-[motion=from-start]:animate-enterFromLeft data-[motion=from-end]:animate-enterFromRight data-[motion=to-start]:animate-exitToLeft data-[motion=to-end]:animate-exitToRight
                     `}>
                     <div className="rounded-lg border border-aeblack-100 bg-whitely-50 p-4 shadow-lg">
