@@ -1,8 +1,7 @@
 import React from 'react'
-import Modal from './Modal'
+import { Modal, Close } from './Modal'
 import Button from '../Button/Button'
 import { Check, Warning } from '@phosphor-icons/react'
-import { Close } from '@radix-ui/react-dialog'
 
 export default {
   title: 'Components/Modal',
@@ -25,11 +24,6 @@ export const Simple = () => {
           <li>Click the close button</li>
           <li>Click outside the modal</li>
         </ul>
-        <div className="flex justify-end gap-3 mt-6">
-          <Close asChild>
-            <Button>Close</Button>
-          </Close>
-        </div>
       </div>
     </Modal>
   )

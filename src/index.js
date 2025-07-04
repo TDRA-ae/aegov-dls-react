@@ -15,7 +15,7 @@ export { default as Card } from './components/Card/Card';
 export { default as Checkbox } from './components/Checkbox/Checkbox';
 export { Hyperlink } from './components/Hyperlink/Hyperlink';
 export { default as Input } from './components/Input/Input';
-export { default as Modal } from './components/Modal/Modal';
+export { Modal, Close } from './components/Modal/Modal';
 export { default as Pagination } from './components/Pagination/Pagination';
 export { 
     PopoverRoot,
